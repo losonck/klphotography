@@ -1,0 +1,33 @@
+---
+// Phase 4 Plan 04-03 / PERF-01: Emit <link rel="preload"> for the hero LCP image
+// into <head> via BaseLayout's named slot, with srcset URLs derived programmatically
+// by getImage() so they MATCH the hashed URLs <Picture> emits in Hero.astro
+// (no double-fetch, no hash drift on rebuild — see RESEARCH §6 + Pitfall 5).
+//
+// IMPORTANT: This component is in src/components/ (NOT sections/) because it does
+// not render a visible section — only a single <link> tag for <head>.
+//
+// MUST mirror Hero.astro's <Picture> parameters:
+//   formats=['avif', 'webp'], widths=[640, 1024, 1536, 1920, 2400], sizes="100vw"
+//
+// AVIF-only preload + WebP via <picture> fallback is the documented best practice
+// (RESEARCH §6 + LOCKED #3). Emitting two preload tags doubles bandwidth use
+// against AVIF-capable browsers.
+import { getImage } from 'astro:assets';
+import hero from '@/assets/placeholder/hero.jpg';
+
+const heroAvif = await getImage({
+  src: hero,
+  widths: [640, 1024, 1536, 1920, 2400],
+  format: 'avif',
+});
+---
+
+<link
+  rel="preload"
+  as="image"
+  imagesrcset={heroAvif.srcSet.attribute}
+  imagesizes="100vw"
+  fetchpriority="high"
+  type="image/avif"
+/>
