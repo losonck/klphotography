@@ -1,5 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { Image } from 'astro:assets';
+import logo from '@/assets/brand/logo.jpg';
 
 interface Props extends HTMLAttributes<'nav'> {
   brand?: string;
@@ -33,7 +35,18 @@ const links = [
   {...rest}
 >
   <div class="mx-auto max-w-6xl px-6 sm:px-8 py-4 flex items-center justify-between">
-    <a href="/" class="font-serif text-xl text-ink">{brand}</a>
+    <a href="/" class="flex items-center gap-3 text-ink motion-safe:transition-colors hover:text-bronze focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze">
+      <Image
+        src={logo}
+        alt={brand}
+        width={48}
+        height={48}
+        loading="eager"
+        decoding="async"
+        class="h-10 w-10 sm:h-12 sm:w-12 rounded-sm object-contain"
+      />
+      <span class="hidden sm:inline font-serif text-xl">{brand}</span>
+    </a>
 
     {/* Desktop nav — visible sm: and up */}
     <ul class="hidden sm:flex gap-8">
