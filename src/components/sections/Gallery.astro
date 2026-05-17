@@ -1,0 +1,99 @@
+---
+// Phase 4 Plan 04-02: Justified-grid portfolio gallery component.
+// All geometry runs at SSG time inside this frontmatter (Astro build); zero client JS for layout.
+// Lightbox client JS is wired in Plan 04-03 — every <a> in this file already exposes the
+// data-pswp-src / data-pswp-width / data-pswp-height attributes PhotoSwipe will look for.
+//
+// See: .planning/phases/04-portfolio-gallery-image-pipeline/04-RESEARCH.md §3 (justified-layout),
+//      §5 (above-fold eager strategy), §9 (CLS prevention), §10 (EXIF), Pitfall 3 + 6.
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import justifiedLayout from 'justified-layout';
+import Section from '@/components/ui/Section.astro';
+
+// Sort by sortOrder so DOM order matches owner-curated above-fold priority.
+const items = (await getCollection('gallery')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder
+);
+
+// First N thumbs are eager / auto priority — keep the hero (fetchpriority="high") winning
+// the LCP race, but get the first row paint started early. RESEARCH §5 + LOCKED #5.
+const ABOVE_FOLD = 4;
+
+// Empty-state guard (RESEARCH Pitfall 6 — Threat T-04-07).
+// justifiedLayout([], ...) returns { containerHeight: 0, boxes: [] } — a zero-height
+// section makes the #portfolio nav anchor scroll to nothing. Bail out with a graceful
+// fallback before computing geometry.
+const hasItems = items.length > 0;
+
+// Numeric aspect ratios are the ONLY shape justified-layout accepts (RESEARCH Pitfall 3 —
+// passing ImageMetadata objects throws TypeError).
+const geometry = hasItems
+  ? justifiedLayout(
+      items.map((i) => i.data.image.width / i.data.image.height),
+      { containerWidth: 1280, targetRowHeight: 320, boxSpacing: 4 }
+    )
+  : { containerHeight: 0, boxes: [] };
+---
+
+<Section id="portfolio" tone="cream-deep">
+  <h2>Selected work</h2>
+
+  {items.length === 0 ? (
+    <p class="mt-6">
+      Portfolio launching soon. In the meantime, find recent work on
+      <a href="https://instagram.com/klphotography.ie" class="text-bronze hover:text-bronze-hover underline">Instagram</a>.
+    </p>
+  ) : (
+    <div
+      class="relative mx-auto mt-8 w-full max-w-[1280px]"
+      style={`height: ${geometry.containerHeight}px`}
+    >
+      {items.map((item, i) => (
+        <a
+          href={item.data.image.src}
+          data-pswp-src={item.data.image.src}
+          data-pswp-width={item.data.image.width}
+          data-pswp-height={item.data.image.height}
+          aria-label={item.data.alt}
+          class="absolute block overflow-hidden"
+          style={`width: ${geometry.boxes[i].width}px; height: ${geometry.boxes[i].height}px; top: ${geometry.boxes[i].top}px; left: ${geometry.boxes[i].left}px;`}
+        >
+          <Picture
+            src={item.data.image}
+            formats={['avif', 'webp']}
+            widths={[320, 640, 960]}
+            sizes="(min-width: 1280px) 320px, (min-width: 640px) 33vw, 100vw"
+            alt={item.data.alt}
+            loading={i < ABOVE_FOLD ? 'eager' : 'lazy'}
+            decoding={i < ABOVE_FOLD ? 'auto' : 'async'}
+            fetchpriority={i < ABOVE_FOLD ? 'auto' : 'low'}
+            class="block h-full w-full object-cover"
+          />
+        </a>
+      ))}
+    </div>
+  )}
+</Section>
+
+<style>
+  a[data-pswp-src] {
+    cursor: zoom-in;
+  }
+  a[data-pswp-src] img {
+    transition: transform 200ms ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a[data-pswp-src] img {
+      transition: none;
+    }
+  }
+  a[data-pswp-src]:hover img,
+  a[data-pswp-src]:focus-visible img {
+    transform: scale(1.03);
+  }
+  a[data-pswp-src]:focus-visible {
+    outline: 2px solid var(--color-bronze, currentColor);
+    outline-offset: 4px;
+  }
+</style>
