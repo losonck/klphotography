@@ -48,7 +48,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Define palette, typography, spacing tokens in Tailwind config; pick and self-host fonts
+- [x] 02-01: Define palette, typography, spacing tokens in Tailwind config; pick and self-host fonts
 - [ ] 02-02: Build Button, Nav, Section, Footer primitives plus a `/styleguide` showcase route
 
 ### Phase 3: Static Content Sections
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & DNS Pre-flight | 2/2 | Complete | 2026-05-17 |
-| 2. Design System | 0/2 | Not started | - |
+| 2. Design System | 1/2 | In progress | - |
 | 3. Static Content Sections | 0/3 | Not started | - |
 | 4. Portfolio Gallery & Image Pipeline | 0/3 | Not started | - |
 | 5. Contact Form Backend & GDPR | 0/3 | Not started | - |
