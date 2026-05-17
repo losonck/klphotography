@@ -1,0 +1,106 @@
+<!--
+  Tailwind v4 safelist (do not remove): the swatch grid below uses dynamic
+  `bg-${c.name}` template literals which the content scanner cannot statically
+  resolve. The following class literals are listed here so the scanner emits
+  the corresponding CSS:
+  bg-cream bg-cream-deep bg-ink bg-ink-soft bg-bronze bg-bronze-hover bg-rule
+-->
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import Section from '@/components/ui/Section.astro';
+import Nav from '@/components/ui/Nav.astro';
+import Footer from '@/components/ui/Footer.astro';
+
+const colors = [
+  { name: 'cream',        hex: '#FAF7F2', role: 'Page surface' },
+  { name: 'cream-deep',   hex: '#F0EAE0', role: 'Alt sections' },
+  { name: 'ink',          hex: '#1A1A1A', role: 'Body + headings' },
+  { name: 'ink-soft',     hex: '#4A4A4A', role: 'Captions' },
+  { name: 'bronze',       hex: '#6B4423', role: 'CTA + links' },
+  { name: 'bronze-hover', hex: '#553617', role: 'Hover state' },
+  { name: 'rule',         hex: '#DCD3C4', role: 'Hairlines' },
+];
+---
+
+<BaseLayout title="Styleguide — KL Photography" description="Design system reference.">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
+  <Nav />
+
+  <main>
+    <Section id="intro" tone="cream">
+      <h1>Styleguide</h1>
+      <p>
+        Living reference for the design system. This page ships in production behind
+        <code>noindex</code> so the owner and future contributors can audit the visual
+        language without reading code.
+      </p>
+    </Section>
+
+    <Section id="palette" tone="cream-deep">
+      <h2>Color</h2>
+      <p>Every pair below has been verified at WCAG AA for normal text; most clear AAA.</p>
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        {colors.map((c) => (
+          <div class="border border-rule">
+            <div class={`h-24 bg-${c.name}`} aria-hidden="true"></div>
+            <div class="p-4">
+              <h3 class="text-base">{c.name}</h3>
+              <p class="text-sm text-ink-soft"><code>{c.hex}</code></p>
+              <p class="text-sm">{c.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <Section id="typography" tone="cream">
+      <h2>Typography</h2>
+      <h1>Hero h1 — clamp(2.5rem, 8vw, 7rem)</h1>
+      <h2>Section h2 — clamp(2rem, 5vw, 4rem)</h2>
+      <h3>Sub h3 — clamp(1.5rem, 3vw, 2.25rem)</h3>
+      <h4>Small h4 — uppercase Inter 600</h4>
+      <p>Body copy renders at 16px on mobile and steps to 18px at the <code>sm:</code> breakpoint (≥640px). Maximum line length is capped at 65ch for readability.</p>
+      <p><small>Small / caption renders at 14px in ink-soft.</small></p>
+    </Section>
+
+    <Section id="buttons" tone="cream-deep">
+      <h2>Buttons &mdash; motion demo</h2>
+      <p>The hover color transition below is the phase&rsquo;s single motion example. Enable <em>prefers-reduced-motion: reduce</em> in your OS or DevTools to confirm the transition is neutralized.</p>
+
+      <h3>Variants × sizes</h3>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <Button variant="primary" size="sm">Primary sm</Button>
+        <Button variant="primary" size="md">Primary md</Button>
+        <Button variant="primary" size="lg">Primary lg</Button>
+        <Button variant="secondary" size="sm">Secondary sm</Button>
+        <Button variant="secondary" size="md">Secondary md</Button>
+        <Button variant="secondary" size="lg">Secondary lg</Button>
+        <Button variant="ghost" size="sm">Ghost sm</Button>
+        <Button variant="ghost" size="md">Ghost md</Button>
+        <Button variant="ghost" size="lg">Ghost lg</Button>
+      </div>
+
+      <h3 class="mt-12">States</h3>
+      <div class="mt-4 flex flex-wrap gap-4">
+        <Button variant="primary" disabled>Disabled</Button>
+        <Button variant="primary" loading>Loading</Button>
+        <Button variant="ghost" aria-label="Close dialog">&times;</Button>
+        <Button variant="primary" as="a" href="#contact">Link styled as button</Button>
+      </div>
+    </Section>
+
+    <Section id="navigation" tone="cream">
+      <h2>Navigation</h2>
+      <p>The static navigation primitive rendered at the top of this page. Sticky behavior and mobile hamburger are intentionally deferred to Phase 3 (CONTENT-06).</p>
+    </Section>
+
+    <Section id="footer-demo" tone="cream-deep">
+      <h2>Footer</h2>
+      <p>The footer primitive renders below the page content.</p>
+    </Section>
+  </main>
+
+  <Footer />
+</BaseLayout>
