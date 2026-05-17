@@ -50,7 +50,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **GALLERY-01**: Justified-grid layout (Flickr-style even rows, varied widths) for ~50 curated photos
 - [x] **GALLERY-02**: Astro `<Picture>` pipeline generates AVIF + WebP + JPEG at multiple widths; correct `srcset` and `sizes`
 - [x] **GALLERY-03**: Below-fold gallery thumbnails use `loading="lazy"` and `decoding="async"`; above-fold thumbnails are eager
-- [ ] **GALLERY-04**: Click on a thumbnail opens a lightbox (keyboard arrows + mobile swipe + ESC to close)
+- [x] **GALLERY-04**: Click on a thumbnail opens a lightbox (keyboard arrows + mobile swipe + ESC to close)
 - [x] **GALLERY-05**: Every image has descriptive `alt` text stored in gallery metadata; CI fails build if any image is missing alt
 - [x] **GALLERY-06**: Gallery metadata lives in `src/content/gallery/*.json` (or content collection) — caption, alt, sort order, optional EXIF
 - [x] **GALLERY-07**: Photographer-supplied originals stored in `src/assets/portfolio/` (committed to repo or LFS if total > ~200 MB)
@@ -79,7 +79,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Performance & SEO
 
-- [ ] **PERF-01**: Hero image preloaded (`<link rel="preload" as="image" fetchpriority="high">`), eager-loaded, AVIF ≤200 KB at common viewport widths
+- [x] **PERF-01**: Hero image preloaded (`<link rel="preload" as="image" fetchpriority="high">`), eager-loaded, AVIF ≤200 KB at common viewport widths
 - [ ] **PERF-02**: Mobile Lighthouse Performance ≥90 on home page (real device or throttled emulation)
 - [ ] **PERF-03**: LCP ≤2.5s on simulated mobile 4G
 - [ ] **PERF-04**: CLS ≤0.1 (all images carry width/height)
@@ -178,7 +178,7 @@ Filled in during roadmap creation.
 | GALLERY-01 | Phase 4 | Complete |
 | GALLERY-02 | Phase 4 | Complete |
 | GALLERY-03 | Phase 4 | Complete |
-| GALLERY-04 | Phase 4 | Pending |
+| GALLERY-04 | Phase 4 | Complete |
 | GALLERY-05 | Phase 4 (Plan 04-01) | Complete |
 | GALLERY-06 | Phase 4 (Plan 04-01) | Complete |
 | GALLERY-07 | Phase 4 (Plan 04-01) | Complete |
@@ -198,7 +198,7 @@ Filled in during roadmap creation.
 | GDPR-03 | Phase 5 | Pending |
 | GDPR-04 | Phase 5 | Pending |
 | GDPR-05 | Phase 5 | Pending |
-| PERF-01 | Phase 4 | Pending |
+| PERF-01 | Phase 4 | Complete |
 | PERF-02 | Phase 6 | Pending |
 | PERF-03 | Phase 6 | Pending |
 | PERF-04 | Phase 6 | Pending |

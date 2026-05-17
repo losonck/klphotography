@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Plan 04-01 complete — content collection + Zod alt-lint + 18 curated photos + hero/about/logo swap shipped; ready for 04-02 (justified-grid gallery component)
-last_updated: "2026-05-17T21:57:40.522Z"
+status: verifying
+stopped_at: Phase 4 complete — 18-thumb justified-grid + PhotoSwipe lightbox + Hero preload; Lighthouse a11y 100/perf 86/CLS 0/LCP 4.1s (localhost); 11 human sub-tests pending
+last_updated: "2026-05-17T23:00:00.000Z"
 last_activity: 2026-05-17
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 10
-  completed_plans: 9
-  percent: 50
+  completed_plans: 10
+  percent: 67
 ---
 
 # Project State
@@ -25,13 +25,13 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 ## Current Position
 
-Phase: 4 of 6 (Portfolio Gallery & Image Pipeline) — IN PROGRESS
-Plan: 2 of 3 complete in current phase (content collection + owner asset intake + hero/about/logo swap)
-Status: Ready to execute
-Last activity: 2026-05-17
+Phase: 4 of 6 (Portfolio Gallery & Image Pipeline) — COMPLETE pending human checkpoint
+Plan: 3 of 3 complete (content+assets / gallery / lightbox+preload)
+Status: Phase complete — Lighthouse a11y 100 + CLS 0; 11 human browser sub-tests pending per 04-03-SUMMARY
+Last activity: 2026-05-17 — Plan 04-03 shipped (PhotoSwipe v5 lightbox + HeroPreload via getImage(), 4 commits + summary)
 
-Progress (Phase 4): [███░░░░░░░] 33% (1/3 plans)
-Overall: [█████░░░░░] 50% (8/16 plans across all phases)
+Progress (Phase 4): [██████████] 100% (10/15 plans across all phases)
+Overall: [██████░░░░] 67% (10/15 plans across all phases)
 
 ## Performance Metrics
 
