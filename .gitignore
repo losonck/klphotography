@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # misc
 .cache/
+
+# owner raw photo intake (curated subset copied to src/assets/)
+photos/
