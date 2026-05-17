@@ -7,7 +7,10 @@ interface Props extends HTMLAttributes<'nav'> {
 
 const { brand = 'KL Photography', class: className, ...rest } = Astro.props;
 
+// Per D-03: NO #portfolio link in Phase 3. Five links: Home (#hero) / About / Pricing / Testimonials / Contact.
+// (Phase 4 plan will insert #portfolio when the real gallery ships.)
 const links = [
+  { href: '#hero', label: 'Home' },
   { href: '#about', label: 'About' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#testimonials', label: 'Testimonials' },
@@ -16,22 +19,113 @@ const links = [
 ---
 
 <nav
-  class:list={['bg-cream border-b border-rule', className]}
   aria-label="Primary"
+  data-scrolled="false"
+  class:list={[
+    'sticky top-0 z-50 w-full',
+    'motion-safe:transition-colors',
+    /* Initial state — subtle frost per RESEARCH §6 (D-11 + Pitfall 7): avoid pure transparent over arbitrary hero photo. */
+    'bg-cream/40 backdrop-blur-sm border-b border-transparent',
+    /* Scrolled state — flipped by IntersectionObserver via data-scrolled="true". */
+    'data-[scrolled=true]:bg-cream/90 data-[scrolled=true]:border-rule',
+    className,
+  ]}
   {...rest}
 >
   <div class="mx-auto max-w-6xl px-6 sm:px-8 py-4 flex items-center justify-between">
     <a href="/" class="font-serif text-xl text-ink">{brand}</a>
+
+    {/* Desktop nav — visible sm: and up */}
     <ul class="hidden sm:flex gap-8">
       {links.map((l) => (
         <li>
           <a
             href={l.href}
-            class="font-sans text-sm text-ink motion-safe:transition-colors hover:text-bronze"
-            >{l.label}</a
-          >
+            class="font-sans text-sm text-ink motion-safe:transition-colors hover:text-bronze focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze"
+          >{l.label}</a>
         </li>
       ))}
     </ul>
+
+    {/* Mobile hamburger toggle — visible below sm: only */}
+    <button
+      id="nav-toggle"
+      type="button"
+      class="sm:hidden inline-flex items-center justify-center h-11 w-11 -mr-2 text-ink motion-safe:transition-colors hover:text-bronze focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze"
+      aria-expanded="false"
+      aria-controls="nav-mobile-menu"
+      aria-label="Toggle menu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M3 6h18" />
+        <path d="M3 12h18" />
+        <path d="M3 18h18" />
+      </svg>
+    </button>
   </div>
+
+  {/* Mobile menu — hidden until aria-expanded="true"; appears below nav bar without animation. */}
+  <ul
+    id="nav-mobile-menu"
+    class="sm:hidden hidden flex-col gap-0 border-t border-rule bg-cream"
+  >
+    {links.map((l) => (
+      <li>
+        <a
+          href={l.href}
+          class="block px-6 py-4 text-base text-ink border-b border-rule motion-safe:transition-colors hover:text-bronze hover:bg-cream-deep focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-bronze"
+        >{l.label}</a>
+      </li>
+    ))}
+  </ul>
 </nav>
+
+<script>
+  // 03-03 sticky-nav background flip (IntersectionObserver) + mobile hamburger toggle
+  // (RESEARCH §5 + §6 — combined into one script block; Vite bundles into dist/_astro/*.js).
+
+  // ── Sticky nav scrolled-state ────────────────────────────────────────────────
+  const nav = document.querySelector('nav[aria-label="Primary"]');
+  const sentinel = document.querySelector('[data-nav-sentinel]');
+  if (nav && sentinel && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        nav.setAttribute('data-scrolled', entry.isIntersecting ? 'false' : 'true');
+      },
+      { threshold: 0 }
+    );
+    obs.observe(sentinel);
+  }
+
+  // ── Mobile hamburger toggle ──────────────────────────────────────────────────
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-mobile-menu');
+  if (toggle && menu) {
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.add('hidden');
+    };
+    const open = () => {
+      toggle.setAttribute('aria-expanded', 'true');
+      menu.classList.remove('hidden');
+    };
+    toggle.addEventListener('click', () => {
+      toggle.getAttribute('aria-expanded') === 'true' ? close() : open();
+    });
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        close();
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (toggle.getAttribute('aria-expanded') !== 'true') return;
+      const t = e.target as Node;
+      if (!menu.contains(t) && !toggle.contains(t)) close();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 640 && toggle.getAttribute('aria-expanded') === 'true') close();
+    });
+  }
+</script>
