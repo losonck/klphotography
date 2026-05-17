@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'nav'> {
+  brand?: string;
+}
+
+const { brand = 'KL Photography', class: className, ...rest } = Astro.props;
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<nav
+  class:list={['bg-cream border-b border-rule', className]}
+  aria-label="Primary"
+  {...rest}
+>
+  <div class="mx-auto max-w-6xl px-6 sm:px-8 py-4 flex items-center justify-between">
+    <a href="/" class="font-serif text-xl text-ink">{brand}</a>
+    <ul class="hidden sm:flex gap-8">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="font-sans text-sm text-ink motion-safe:transition-colors hover:text-bronze"
+            >{l.label}</a
+          >
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

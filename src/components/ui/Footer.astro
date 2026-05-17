@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'footer'> {}
+
+const { class: className, ...rest } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer
+  class:list={['bg-cream-deep border-t border-rule', className]}
+  {...rest}
+>
+  <div class="mx-auto max-w-6xl px-6 sm:px-8 py-12 lg:py-16 grid grid-cols-1 gap-8 lg:grid-cols-4">
+    <div class="lg:col-span-2">
+      <slot name="brand"><p class="font-serif text-xl text-ink">KL Photography</p></slot>
+    </div>
+    <div>
+      <slot name="links" />
+    </div>
+    <div>
+      <slot name="social" />
+    </div>
+  </div>
+  <div class="mx-auto max-w-6xl px-6 sm:px-8 pb-8 text-sm text-ink-soft">
+    <slot name="legal">&copy; {year} KL Photography. All rights reserved.</slot>
+  </div>
+</footer>

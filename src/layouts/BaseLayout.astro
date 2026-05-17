@@ -19,6 +19,8 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <Font cssVariable="--font-serif" preload />
     <Font cssVariable="--font-sans" />
+    <!-- Slot ordering: placed after <Font /> preloads so injected <link rel="preload"> from pages do not preempt critical font preloads. Phase 6 SEO meta should preserve this order. -->
+    <slot name="head" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
   </head>

@@ -1,0 +1,66 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Variant = 'primary' | 'secondary' | 'ghost';
+type Size = 'sm' | 'md' | 'lg';
+
+interface Props extends HTMLAttributes<'button'> {
+  variant?: Variant;
+  size?: Size;
+  as?: 'button' | 'a';
+  href?: string;
+  loading?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  as = 'button',
+  href,
+  loading = false,
+  disabled,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = as;
+const isInert = loading || disabled;
+
+const base = [
+  'inline-flex items-center justify-center gap-2',
+  'font-sans font-medium tracking-wide',
+  'rounded-none border',
+  'motion-safe:transition-colors motion-safe:duration-150',
+  'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze',
+  'disabled:opacity-50 disabled:pointer-events-none',
+  'aria-busy:cursor-progress',
+];
+
+const variants: Record<Variant, string> = {
+  primary: 'bg-ink text-cream border-ink hover:bg-bronze-hover hover:border-bronze-hover',
+  secondary: 'bg-transparent text-ink border-ink hover:bg-ink hover:text-cream',
+  ghost: 'bg-transparent text-ink border-transparent hover:text-bronze',
+};
+
+const sizes: Record<Size, string> = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-base sm:text-lg',
+};
+---
+
+<Tag
+  href={Tag === 'a' ? href : undefined}
+  disabled={isInert || undefined}
+  aria-busy={loading ? 'true' : undefined}
+  class:list={[...base, variants[variant], sizes[size], className]}
+  {...rest}
+>
+  {loading && (
+    <span
+      class="inline-block h-3 w-3 rounded-full border-2 border-current border-r-transparent motion-safe:animate-spin"
+      aria-hidden="true"
+    ></span>
+  )}
+  <slot />
+</Tag>

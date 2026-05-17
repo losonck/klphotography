@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Tone = 'cream' | 'cream-deep';
+
+interface Props extends HTMLAttributes<'section'> {
+  id: string;
+  tone?: Tone;
+}
+
+const { id, tone = 'cream', class: className, ...rest } = Astro.props;
+const toneClass = tone === 'cream-deep' ? 'bg-cream-deep' : 'bg-cream';
+---
+
+<section
+  id={id}
+  class:list={[toneClass, 'py-16 sm:py-24 lg:py-32', className]}
+  {...rest}
+>
+  <div class="mx-auto max-w-6xl px-6 sm:px-8">
+    <slot />
+  </div>
+</section>
