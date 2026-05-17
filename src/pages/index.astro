@@ -1,14 +1,24 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Nav from '@/components/ui/Nav.astro';
+import Footer from '@/components/ui/Footer.astro';
+import Hero from '@/components/sections/Hero.astro';
+import PortfolioStub from '@/components/sections/PortfolioStub.astro';
+import About from '@/components/sections/About.astro';
+import Pricing from '@/components/sections/Pricing.astro';
 ---
 
 <BaseLayout
   title="KL Photography — Wedding Photographer, Dublin, Ireland"
-  description="Dublin-based wedding photographer serving Ireland nationwide. Documentary, storytelling wedding photography."
+  description="Dublin-based wedding photographer for couples who want to remember the quiet moments. Documentary coverage across Ireland."
 >
-  <main class="min-h-screen bg-stone-50 text-stone-900 p-8">
-    <h1 class="text-4xl font-bold tracking-tight">KL Photography</h1>
-    <p class="mt-2 text-stone-600">Site under construction.</p>
-    <p class="mt-1 text-xs text-stone-500" data-deploy-marker>deploy-check: 2026-05-17</p>
+  <Nav />
+  <main>
+    <Hero />
+    <PortfolioStub />
+    <About />
+    <Pricing />
+    <!-- 03-02 will append: <Testimonials /> + <Contact /> here, before </main> -->
   </main>
+  <Footer />
 </BaseLayout>

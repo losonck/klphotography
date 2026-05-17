@@ -1,0 +1,38 @@
+<!-- [OWNER-REVIEW] Pricing — 6h LEFT + 10h RIGHT per CONTENT-03 + D-04. €1,800 / €2,400 starting-from anchors per D-01 with visible OWNER-CONFIRM tags in copy. -->
+---
+import Section from '@/components/ui/Section.astro';
+---
+
+<Section id="pricing" tone="cream-deep">
+  <h2>Coverage &amp; what's included</h2>
+  <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- [OWNER-CONFIRM] 6-hour tier starting-from price. Per locked decision D-01, the €1,800 anchor is provisional and the visible [OWNER-CONFIRM] tag in copy must remain until owner confirms or amends. -->
+    <div class="bg-cream border border-rule p-8 lg:p-12">
+      <h3>Half day</h3>
+      <p class="text-ink-soft">6 hours of coverage</p>
+      <p class="mt-6"><span class="text-2xl font-serif">Starting from <strong>€1,800</strong></span> <span class="text-ink-soft text-sm">[OWNER-CONFIRM]</span></p>
+      <hr class="my-6 border-bronze" />
+      <ul class="space-y-2">
+        <li>Ceremony &amp; couple portraits</li>
+        <li>≈ 400 fully edited photographs</li>
+        <li>Online gallery, 3 months</li>
+        <li>High-resolution downloads</li>
+      </ul>
+    </div>
+    <!-- [OWNER-CONFIRM] 10-hour tier starting-from price. Per locked decision D-01, the €2,400 anchor is provisional and the visible [OWNER-CONFIRM] tag in copy must remain until owner confirms or amends. -->
+    <div class="bg-cream border border-rule p-8 lg:p-12">
+      <h3>Full day</h3>
+      <p class="text-ink-soft">10 hours of coverage</p>
+      <p class="mt-6"><span class="text-2xl font-serif">Starting from <strong>€2,400</strong></span> <span class="text-ink-soft text-sm">[OWNER-CONFIRM]</span></p>
+      <hr class="my-6 border-bronze" />
+      <ul class="space-y-2">
+        <li>Prep through first dance</li>
+        <li>≈ 500 fully edited photographs</li>
+        <li>Online gallery, 3 months</li>
+        <li>High-resolution downloads</li>
+        <li>Optional fine-art album (priced separately)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="mt-12 text-ink-soft">Every wedding is different. Tell me about yours and I'll quote you the right package — there's no template.</p>
+</Section>
