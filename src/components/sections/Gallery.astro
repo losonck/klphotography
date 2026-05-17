@@ -36,6 +36,17 @@ const geometry = hasItems
   : { containerHeight: 0, boxes: [] };
 ---
 
+<style is:global>
+  @import 'photoswipe/style.css';
+  /* Editorial palette overrides — keep brand consistent inside the lightbox. */
+  :root {
+    --pswp-bg: var(--color-ink, #1a1a1a);
+    --pswp-placeholder-bg: var(--color-ink, #1a1a1a);
+    --pswp-icon-color: var(--color-cream, #f7f3ec);
+    --pswp-icon-color-secondary: var(--color-ink-soft, #555);
+  }
+</style>
+
 <Section id="portfolio" tone="cream-deep">
   <h2>Selected work</h2>
 
@@ -97,3 +108,24 @@ const geometry = hasItems
     outline-offset: 4px;
   }
 </style>
+
+<script>
+  // Phase 4 Plan 04-03: PhotoSwipe v5 lightbox bootstrap.
+  // - Attaches to anchors pre-wired in 04-02 (data-pswp-src/width/height).
+  // - LOCKED user decision #6: wheelToZoom OFF, closeOnVerticalDrag ON.
+  // - ESC-close, focus trap, ARIA modal, keyboard arrows = default-on in PhotoSwipe v5.
+  //   The escape-key option is deliberately omitted (defaults to true) — ESC must
+  //   always close per GALLERY-04; never disable it.
+  // - pswpModule is dynamically imported so Vite code-splits the heavier core
+  //   bundle behind the lighter lightbox controller.
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#portfolio',
+    children: 'a[data-pswp-src]',
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: false,
+    closeOnVerticalDrag: true,
+  });
+  lightbox.init();
+</script>
