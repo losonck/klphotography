@@ -1312,37 +1312,37 @@ All code examples in §2, §3, §5, §6, §8, §9, §10, §11 above are based on
 | A10 | The placeholder hero image (downloaded Unsplash JPEG) will be ≤ 500 KB at 2400px wide, sufficient to maintain ≥90 Lighthouse Performance | §3, §12 | Medium — depends on the specific image chosen. Mitigation: pick a photo with limited fine-grain detail (e.g., simple composition with blurred background) to keep JPEG compressible. Phase 4 replaces with the real hero optimized to ≤200 KB AVIF. |
 | A11 | The wedding photographer is named **Karl** with the Facebook URL slug unknown | §2 + §11 | Medium-Low — `https://www.facebook.com/[OWNER-CONFIRM]` is visible-literal placeholder; owner provides the actual URL. Until then the link is broken — but it's visibly broken (literal `[OWNER-CONFIRM]` in URL won't resolve). |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **What are the actual prices the owner wants displayed?**
    - What we know: Ireland 2026 market data anchors a defensible range; existing Wix site lists no prices.
    - What's unclear: Whether owner's actual prices match our placeholder anchors.
-   - Recommendation: Ship `€1,800` / `€2,400` with `[OWNER-CONFIRM]` tags. Owner reviews preview, either confirms or supplies their numbers, executor amends in one edit.
+   - RESOLVED: Ship `€1,800` / `€2,400` with `[OWNER-CONFIRM]` tags. Owner reviews preview, either confirms or supplies their numbers, executor amends in one edit.
 
 2. **Photographer's first name and bio facts (years experience, Facebook URL)?**
    - What we know: Email/domain implies first initial K + surname starting with L; existing Wix copy avoided explicit naming.
    - What's unclear: Actual first name, years in business, Facebook page URL.
-   - Recommendation: Use "Karl" as default with `[OWNER-CONFIRM]`. The Facebook link uses literal `[OWNER-CONFIRM]` in the URL slug so it's visibly broken — won't ship by accident. Owner walkthrough resolves all three at once.
+   - RESOLVED: Use "Karl" as default with `[OWNER-CONFIRM]`. The Facebook link uses literal `[OWNER-CONFIRM]` in the URL slug so it's visibly broken — won't ship by accident. Owner walkthrough resolves all three at once.
 
 3. **Are the 5 Unsplash placeholder images chosen by the agent or by the owner?**
    - What we know: Owner has photos locally but Phase 4 is the right place to handle real photos.
    - What's unclear: Does the owner want input on placeholder feel or does the agent pick?
-   - Recommendation: Agent picks 5 reasonable defaults (warm/editorial wedding feel, neutral palette, not on-the-nose), commits, owner reviews in preview. If owner wants to swap, it's a Find+Replace import.
+   - RESOLVED: Agent picks 5 reasonable defaults (warm/editorial wedding feel, neutral palette, not on-the-nose), commits, owner reviews in preview. If owner wants to swap, it's a Find+Replace import.
 
 4. **Should the `#portfolio` nav link be added now (linking to PortfolioStub) or only in Phase 4 (linking to real gallery)?**
    - What we know: Adding it now means the link goes to a "coming soon" stub.
    - What's unclear: Whether "coming soon" linking feels worse than "no link at all".
-   - Recommendation: **Option A — don't add `#portfolio` to nav in Phase 3.** Hero photo serves as portfolio teaser; Phase 4 adds the link when there's something real to jump to. The Section still has `id="portfolio"` so the anchor works for direct URL hits.
+   - RESOLVED: **Option A — don't add `#portfolio` to nav in Phase 3.** Hero photo serves as portfolio teaser; Phase 4 adds the link when there's something real to jump to. The Section still has `id="portfolio"` so the anchor works for direct URL hits.
 
 5. **Pricing tier order: 6h first or 10h first?**
    - What we know: Editorial pricing-page convention is "smaller commitment first, anchor tier on right".
    - What's unclear: Owner's preference.
-   - Recommendation: Ship 6h left → 10h right (the recommendation). Trivial reorder if owner asks.
+   - RESOLVED: Ship 6h left → 10h right (the recommendation). Trivial reorder if owner asks.
 
 6. **Should Phase 3 ship `wa.me/` deep link in WhatsApp social icon, or a phone-number-only fallback?**
    - What we know: `wa.me/353851665472` is the official WhatsApp deep-link format; works on mobile + desktop browsers.
    - What's unclear: Whether owner uses WhatsApp Business or personal — affects whether the deep link opens a chat or just resolves to a profile.
-   - Recommendation: Use `wa.me/353851665472` per WhatsApp official link format. Works for both. Tag `[OWNER-CONFIRM: confirm WhatsApp number]` if uncertain.
+   - RESOLVED: Use `wa.me/353851665472` per WhatsApp official link format. Works for both. Tag `[OWNER-CONFIRM: confirm WhatsApp number]` if uncertain.
 
 ## Sources
 
