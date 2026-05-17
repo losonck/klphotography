@@ -30,10 +30,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **DESIGN-01**: Color tokens defined (cream/charcoal/muted-accent editorial palette) in Tailwind config
 - [x] **DESIGN-02**: Type scale defined (serif headline family + sans-serif body family) with viewport-relative sizing for hero/section headers
-- [ ] **DESIGN-03**: Component primitives: Button, Nav, Section, Footer
+- [x] **DESIGN-03**: Component primitives: Button, Nav, Section, Footer
 - [x] **DESIGN-04**: Mobile-first responsive breakpoints set (≤640 / ≥1024 / ≥1280)
 - [x] **DESIGN-05**: `prefers-reduced-motion` respected for any animation
-- [ ] **DESIGN-06**: Lighthouse Accessibility ≥95 on representative pages
+- [x] **DESIGN-06**: Lighthouse Accessibility ≥95 on representative pages
 
 ### Content Sections (single-page IA)
 
@@ -164,10 +164,10 @@ Filled in during roadmap creation.
 | DNS-07 | Phase 6 | Pending |
 | DESIGN-01 | Phase 2 | Complete |
 | DESIGN-02 | Phase 2 | Complete |
-| DESIGN-03 | Phase 2 | Pending |
+| DESIGN-03 | Phase 2 | Complete |
 | DESIGN-04 | Phase 2 | Complete |
 | DESIGN-05 | Phase 2 | Complete |
-| DESIGN-06 | Phase 5 | Pending |
+| DESIGN-06 | Phase 5 | Complete |
 | CONTENT-01 | Phase 3 | Pending |
 | CONTENT-02 | Phase 3 | Pending |
 | CONTENT-03 | Phase 3 | Pending |

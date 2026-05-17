@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: verifying
+stopped_at: Phase 2 complete (pending human checkpoint sign-off for visual/keyboard/motion sub-tests on /styleguide)
+last_updated: "2026-05-17T14:58:57.163Z"
+last_activity: 2026-05-17
+progress:
+  total_phases: 6
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
+  percent: 33
+---
+
 # Project State
 
 ## Project Reference
@@ -9,16 +25,18 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 ## Current Position
 
-Phase: 2 of 6 (Design System) — IN PROGRESS
-Plan: 2 of 2 in current phase (02-01 complete; 02-02 next)
-Status: 02-01 shipped — design tokens + self-hosted fonts wired; ready for Plan 02-02 (primitives + /styleguide)
-Last activity: 2026-05-17 — 02-01 design system tokens + EB Garamond/Inter via Astro Fonts API landed (3 commits, ~6 min)
+Phase: 2 of 6 (Design System) — PHASE COMPLETE, pending human verification
+Plan: 2 of 2 in current phase (both plans shipped; Plan 02-02 complete with Lighthouse a11y 100/100; human checkpoint sub-tests on /styleguide pending)
+Status: Phase complete — ready for human verification (visual + keyboard + reduced-motion + same-origin-font sub-tests per 02-02-SUMMARY.md `human_checkpoint_pending`)
+Last activity: 2026-05-17 — Plan 02-02 shipped (4 primitives + /styleguide + robots Disallow + Lighthouse 100/100; 2 task commits + summary)
 
-Progress: [██░░░░░░░░] 19% (3/16 plans across all phases)
+Progress (Phase 2): [██████████] 100% (4/4 plans across Phases 1-2 of 6 complete)
+Overall: [███░░░░░░░] 25% (4/16 plans across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: —
@@ -27,11 +45,19 @@ Progress: [██░░░░░░░░] 19% (3/16 plans across all phases)
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 2 (Design System) | 1 | ~6min | ~6min |
+| 2 (Design System) | 2 | ~13min | ~6.5min |
+
+**Recent plan executions:**
+
+| Phase | Plan | Duration | Tasks | Files |
+|-------|------|----------|-------|-------|
+| 02 | 01 | ~6min | 3 | 3 |
+| 02 | 02 | ~7min | 3 | 7 |
 
 **Recent Trend:**
-- Last 5 plans: —
-- Trend: —
+
+- Last 2 plans: Plan 02-01 (~6min), Plan 02-02 (~7min)
+- Trend: Stable — primitive layer slightly larger than token layer (4 new components + styleguide page + robots edit), but still under 10 min per plan
 
 *Updated after each plan completion*
 
@@ -55,6 +81,10 @@ Recent decisions affecting current work:
 - Phase 2 (02-01): Self-hosted EB Garamond + Inter via Astro 6 Fonts API + `fontProviders.fontsource()` — zero runtime requests to fonts.googleapis.com / gstatic.com (GDPR-safe by construction)
 - Phase 2 (02-01): Omit `--breakpoint-*` overrides from `@theme` — Tailwind v4 defaults (sm=40rem/lg=64rem/xl=80rem) already match DESIGN-04 exactly; redeclaring a subset risks deactivating `md:` (RESEARCH.md A8 mitigation)
 - Phase 2 (02-01): Only EB Garamond gets `preload` on `<Font />`; Inter loads on-demand. Astro 6 preload is family-wide, not per-weight — 4 preload links emitted (1 per EB Garamond weight×style); accepted, documented in 02-01-SUMMARY.md as deviation
+- Phase 2 (02-02): 4 component primitives (Button/Section/Nav/Footer) under src/components/ui/ following the D-07 pattern (HTMLAttributes extension + slot + class:list; no tailwind-merge, no CVA). Button includes loading? prop with aria-busy + CSS-only motion-safe:animate-spin spinner — Phase 5 contact form will wire this directly.
+- Phase 2 (02-02): /styleguide ships in production with defense-in-depth noindex (per-page meta + robots.txt Disallow); sitemap exclusion deferred to Phase 6 06-01 (no sitemap config yet — explicit blocker note in 02-02-SUMMARY.md next-phase-readiness).
+- Phase 2 (02-02): BaseLayout <slot name=head /> placed AFTER <Font /> preloads with HTML comment documenting slot-ordering invariant — Phase 6 SEO meta injection must preserve this order so injected preload links do not preempt font preloads.
+- Phase 2 (02-02): Lighthouse mobile a11y on /styleguide scored 100/100 (lighthouse@13.3.0 headless) — 0 failed audits, 18 passed; bronze-on-cream ghost-hover mitigation NOT triggered (color-contrast passed at 1.0).
 
 ### Pending Todos
 
@@ -77,6 +107,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-17
-Stopped at: 02-01 complete — design tokens (@theme), type scale (@layer base), reduced-motion blanket, and EB Garamond + Inter via Astro 6 Fonts API; ready for 02-02 (primitives + /styleguide)
+Last session: 2026-05-17T14:58:57.153Z
+Stopped at: Phase 2 complete (pending human checkpoint sign-off for visual/keyboard/motion sub-tests on /styleguide)
 Resume file: None

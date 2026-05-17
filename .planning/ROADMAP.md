@@ -13,7 +13,7 @@ Migrate KL Photography's wedding photography site from Wix to a hand-built Astro
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & DNS Pre-flight** - Astro + Tailwind scaffold, GitHub repo, Cloudflare Pages connected, current DNS snapshotted
-- [ ] **Phase 2: Design System** - Editorial palette, type scale, component primitives, responsive breakpoints
+- [x] **Phase 2: Design System** - Editorial palette, type scale, component primitives, responsive breakpoints (completed 2026-05-17)
 - [ ] **Phase 3: Static Content Sections** - Hero, About, Pricing, Testimonials, Contact UI, nav, footer
 - [ ] **Phase 4: Portfolio Gallery & Image Pipeline** - Justified grid, lightbox, Astro Picture, AVIF/WebP, hero LCP optimization
 - [ ] **Phase 5: Contact Form Backend & GDPR** - Pages Function + Turnstile + Resend, privacy policy, cookieless analytics
@@ -49,7 +49,7 @@ Plans:
 
 Plans:
 - [x] 02-01: Define palette, typography, spacing tokens in Tailwind config; pick and self-host fonts
-- [ ] 02-02: Build Button, Nav, Section, Footer primitives plus a `/styleguide` showcase route
+- [x] 02-02: Build Button, Nav, Section, Footer primitives plus a `/styleguide` showcase route
 
 ### Phase 3: Static Content Sections
 **Goal**: Build all single-page sections (Hero through Footer) with placeholder copy and image, no backend wiring, no real gallery yet — but the page reads as a complete site.
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & DNS Pre-flight | 2/2 | Complete | 2026-05-17 |
-| 2. Design System | 1/2 | In progress | - |
+| 2. Design System | 2/2 | Complete   | 2026-05-17 |
 | 3. Static Content Sections | 0/3 | Not started | - |
 | 4. Portfolio Gallery & Image Pipeline | 0/3 | Not started | - |
 | 5. Contact Form Backend & GDPR | 0/3 | Not started | - |
