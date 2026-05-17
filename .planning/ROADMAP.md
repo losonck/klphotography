@@ -14,8 +14,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & DNS Pre-flight** - Astro + Tailwind scaffold, GitHub repo, Cloudflare Pages connected, current DNS snapshotted
 - [x] **Phase 2: Design System** - Editorial palette, type scale, component primitives, responsive breakpoints (completed 2026-05-17)
-- [ ] **Phase 3: Static Content Sections** - Hero, About, Pricing, Testimonials, Contact UI, nav, footer
-- [ ] **Phase 4: Portfolio Gallery & Image Pipeline** - Justified grid, lightbox, Astro Picture, AVIF/WebP, hero LCP optimization
+- [x] **Phase 3: Static Content Sections** - Hero, About, Pricing, Testimonials, Contact UI, nav, footer (completed 2026-05-17)
+- [x] **Phase 4: Portfolio Gallery & Image Pipeline** - Justified grid, lightbox, Astro Picture, AVIF/WebP, hero LCP optimization (completed 2026-05-17)
 - [ ] **Phase 5: Contact Form Backend & GDPR** - Pages Function + Turnstile + Resend, privacy policy, cookieless analytics
 - [ ] **Phase 6: Launch Cutover** - SEO meta + sitemap + schema, performance audit, DNS swap, Wix decommission
 
@@ -81,7 +81,7 @@ Plans:
 Plans:
 - [x] 04-01: Import owner's photos into `src/assets/portfolio/`, define gallery metadata schema, lint for alt text
 - [x] 04-02: Build justified-grid gallery component using Astro `<Picture>` with AVIF/WebP/responsive srcset
-- [ ] 04-03: Implement accessible lightbox + hero LCP optimization (preload, eager, AVIF budget)
+- [x] 04-03: Implement accessible lightbox + hero LCP optimization (preload, eager, AVIF budget)
 
 ### Phase 5: Contact Form Backend & GDPR
 **Goal**: Wire the form UI to a working backend that delivers enquiries to the owner's Gmail, with spam protection, a real privacy policy, and cookieless analytics.
