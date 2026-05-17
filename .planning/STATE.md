@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-stopped_at: Plan 04-01 complete — content collection + 18 owner photos + hero/about swap + logo integration shipped; 04-02 ready to dispatch
-last_updated: "2026-05-17T21:40:00.000Z"
+status: executing
+stopped_at: Plan 04-01 complete — content collection + Zod alt-lint + 18 curated photos + hero/about/logo swap shipped; ready for 04-02 (justified-grid gallery component)
+last_updated: "2026-05-17T21:57:40.522Z"
 last_activity: 2026-05-17
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 8
+  total_plans: 10
+  completed_plans: 9
   percent: 50
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 ## Current Position
 
 Phase: 4 of 6 (Portfolio Gallery & Image Pipeline) — IN PROGRESS
-Plan: 1 of 3 complete in current phase (content collection + owner asset intake + hero/about/logo swap)
-Status: Plan 04-01 complete (7 commits + SUMMARY); 04-02 (gallery component) ready to dispatch
-Last activity: 2026-05-17 — Plan 04-01 shipped (18 curated photos + Astro 6 glob loader + Zod alt-lint active + hero/about/logo all owner content)
+Plan: 2 of 3 complete in current phase (content collection + owner asset intake + hero/about/logo swap)
+Status: Ready to execute
+Last activity: 2026-05-17
 
 Progress (Phase 4): [███░░░░░░░] 33% (1/3 plans)
 Overall: [█████░░░░░] 50% (8/16 plans across all phases)
@@ -60,6 +60,7 @@ Overall: [█████░░░░░] 50% (8/16 plans across all phases)
 - Plan 04-01 ~50min — much larger scope than typical (owner asset intake + content collection + Astro 6 loader discovery + 3 placeholder swaps + logo integration); 31 files vs typical 3-7
 
 *Updated after each plan completion*
+| Phase 04 P02 | ~11 min | - tasks | - files |
 
 ## Accumulated Context
 
@@ -89,6 +90,9 @@ Recent decisions affecting current work:
 - Phase 4 (04-01): Astro 6 content collection requires explicit `loader: glob(...)` from `'astro/loaders'` — `type: 'data'` alone leaves the collection lazy and Zod inactive. Discovered during alt-lint break/fix test.
 - Phase 4 (04-01): Astro `<Image>` emits an intrinsic-width fallback variant ignoring `widths=[...]` prop — large sources (e.g. 14MB JPG) produce multi-MB fallback webps. Mitigation: pre-resize sources with sharp to ~4× the largest layout width before commit.
 - Phase 4 (04-01): Active GALLERY-05 alt-lint proven — blanking any `alt` fails `npm run build` with `InvalidContentEntryDataError gallery → {slug}: alt: Too small: expected string to have >=5 characters`.
+- [Phase ?]: 04-02: pre-resize 16-golden-hour-portrait source to 640x960 to clear AVIF budget gate
+- [Phase ?]: 04-02: add src/types/justified-layout.d.ts ambient declaration so strict tsconfig stops failing ts(7016) on the depless Flickr lib
+- [Phase ?]: 04-02: switch every Nav.astro link href to /#anchor form (not just the new /#portfolio) for cross-page robustness
 
 ### Pending Todos
 
@@ -111,6 +115,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-17T21:40:00.000Z
+Last session: 2026-05-17T21:57:13.231Z
 Stopped at: Plan 04-01 complete — content collection + Zod alt-lint + 18 curated photos + hero/about/logo swap shipped; ready for 04-02 (justified-grid gallery component)
-Resume file: .planning/phases/04-portfolio-gallery-image-pipeline/04-02-PLAN.md
+Resume file: None

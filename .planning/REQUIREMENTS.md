@@ -47,9 +47,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Portfolio Gallery
 
-- [ ] **GALLERY-01**: Justified-grid layout (Flickr-style even rows, varied widths) for ~50 curated photos
-- [ ] **GALLERY-02**: Astro `<Picture>` pipeline generates AVIF + WebP + JPEG at multiple widths; correct `srcset` and `sizes`
-- [ ] **GALLERY-03**: Below-fold gallery thumbnails use `loading="lazy"` and `decoding="async"`; above-fold thumbnails are eager
+- [x] **GALLERY-01**: Justified-grid layout (Flickr-style even rows, varied widths) for ~50 curated photos
+- [x] **GALLERY-02**: Astro `<Picture>` pipeline generates AVIF + WebP + JPEG at multiple widths; correct `srcset` and `sizes`
+- [x] **GALLERY-03**: Below-fold gallery thumbnails use `loading="lazy"` and `decoding="async"`; above-fold thumbnails are eager
 - [ ] **GALLERY-04**: Click on a thumbnail opens a lightbox (keyboard arrows + mobile swipe + ESC to close)
 - [x] **GALLERY-05**: Every image has descriptive `alt` text stored in gallery metadata; CI fails build if any image is missing alt
 - [x] **GALLERY-06**: Gallery metadata lives in `src/content/gallery/*.json` (or content collection) — caption, alt, sort order, optional EXIF
@@ -175,9 +175,9 @@ Filled in during roadmap creation.
 | CONTENT-05 | Phase 3 | Complete |
 | CONTENT-06 | Phase 3 | Complete |
 | CONTENT-07 | Phase 3 | Complete |
-| GALLERY-01 | Phase 4 | Pending |
-| GALLERY-02 | Phase 4 | Pending |
-| GALLERY-03 | Phase 4 | Pending |
+| GALLERY-01 | Phase 4 | Complete |
+| GALLERY-02 | Phase 4 | Complete |
+| GALLERY-03 | Phase 4 | Complete |
 | GALLERY-04 | Phase 4 | Pending |
 | GALLERY-05 | Phase 4 (Plan 04-01) | Complete |
 | GALLERY-06 | Phase 4 (Plan 04-01) | Complete |

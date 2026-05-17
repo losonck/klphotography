@@ -80,7 +80,7 @@ Plans:
 
 Plans:
 - [x] 04-01: Import owner's photos into `src/assets/portfolio/`, define gallery metadata schema, lint for alt text
-- [ ] 04-02: Build justified-grid gallery component using Astro `<Picture>` with AVIF/WebP/responsive srcset
+- [x] 04-02: Build justified-grid gallery component using Astro `<Picture>` with AVIF/WebP/responsive srcset
 - [ ] 04-03: Implement accessible lightbox + hero LCP optimization (preload, eager, AVIF budget)
 
 ### Phase 5: Contact Form Backend & GDPR
@@ -128,6 +128,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Foundation & DNS Pre-flight | 2/2 | Complete | 2026-05-17 |
 | 2. Design System | 2/2 | Complete   | 2026-05-17 |
 | 3. Static Content Sections | 0/3 | Not started | - |
-| 4. Portfolio Gallery & Image Pipeline | 0/3 | Not started | - |
+| 4. Portfolio Gallery & Image Pipeline | 2/3 | In Progress|  |
 | 5. Contact Form Backend & GDPR | 0/3 | Not started | - |
 | 6. Launch Cutover | 0/3 | Not started | - |
