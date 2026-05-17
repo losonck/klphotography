@@ -9,17 +9,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: GitHub repository created (private or public), main branch
-- [ ] **INFRA-02**: Astro 5 project scaffolded with TypeScript and Tailwind v4
-- [ ] **INFRA-03**: Cloudflare Pages project connected to GitHub repo; push to main triggers production build
-- [ ] **INFRA-04**: Preview deployments for PRs / non-main branches enabled
-- [ ] **INFRA-05**: Production build emits `dist/` with `output: 'static'`, no SSR adapter
-- [ ] **INFRA-06**: `README.md` documents local dev (`npm run dev`), build, and gallery-update workflow
+- [x] **INFRA-01**: GitHub repository created (private or public), main branch
+- [x] **INFRA-02**: Astro 5 project scaffolded with TypeScript and Tailwind v4
+- [x] **INFRA-03**: Cloudflare Pages project connected to GitHub repo; push to main triggers production build
+- [x] **INFRA-04**: Preview deployments for PRs / non-main branches enabled
+- [x] **INFRA-05**: Production build emits `dist/` with `output: 'static'`, no SSR adapter
+- [x] **INFRA-06**: `README.md` documents local dev (`npm run dev`), build, and gallery-update workflow
 
 ### Domain & DNS
 
-- [ ] **DNS-01**: klphotography.ie domain identified at its current IEDR-accredited registrar
-- [ ] **DNS-02**: Full pre-cutover snapshot of existing DNS zone captured (A/CNAME/MX/TXT/SPF/DKIM)
+- [x] **DNS-01**: klphotography.ie domain identified at its current IEDR-accredited registrar
+- [x] **DNS-02**: Full pre-cutover snapshot of existing DNS zone captured (A/CNAME/MX/TXT/SPF/DKIM)
 - [ ] **DNS-03**: Cloudflare zone created for klphotography.ie; all non-A records (MX/TXT/SPF/DKIM/etc.) recreated to preserve email delivery
 - [ ] **DNS-04**: Nameservers at IEDR registrar updated to Cloudflare's pair
 - [ ] **DNS-05**: Cloudflare zone serves apex `klphotography.ie` and `www` from Cloudflare Pages
@@ -149,14 +149,14 @@ Filled in during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
-| INFRA-06 | Phase 1 | Pending |
-| DNS-01 | Phase 1 | Pending |
-| DNS-02 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
+| INFRA-06 | Phase 1 | Complete |
+| DNS-01 | Phase 1 | Complete |
+| DNS-02 | Phase 1 | Complete |
 | DNS-03 | Phase 6 | Pending |
 | DNS-04 | Phase 6 | Pending |
 | DNS-05 | Phase 6 | Pending |
