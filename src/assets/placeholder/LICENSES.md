@@ -1,8 +1,21 @@
-# Placeholder Image Licenses
+# Hero + About Image Rights
 
-All images sourced from unsplash.com under the Unsplash License (commercial reuse, no attribution required). Provenance recorded so Phase 4 can identify which placeholders are being replaced. These files are build inputs (`src/assets/`), not shipped originals.
+**Copyright:** © KL Photography. All rights reserved.
 
-| Filename | Unsplash Photo ID | Photographer | Source URL | Downloaded |
-| -------- | ----------------- | ------------ | ---------- | ---------- |
-| hero.jpg | photo-1519741497674-611481863552 | Nathan Dumlao | https://unsplash.com/photos/man-in-black-suit-jacket-and-woman-in-white-wedding-dress-walking-on-pathway-during-WHWYBmtn3_0 | 2026-05-17 |
-| about-portrait.jpg | photo-1554048612-b6a482bc67e5 | Jakob Owens | https://unsplash.com/photos/man-standing-while-holding-camera-W6Yy6fZSh3c | 2026-05-17 |
+These two images are owner-supplied (the photographer's own work) and replace the
+Unsplash placeholders that were shipped during Phase 3.
+
+The directory name `placeholder/` is preserved because `Hero.astro` and `About.astro`
+import from this path — renaming would require a code change across Phase 3 components.
+The contents are NOT placeholders any more.
+
+## Hero — src/assets/placeholder/hero.jpg
+© KL Photography. From portfolio (see `src/assets/portfolio/LICENSES.md` — same image
+as `01-ceremony-aisle.jpg`, deliberately duplicated so the Hero section ships a striking
+real wedding moment without coupling Hero.astro to the gallery's content collection).
+
+## About portrait — src/assets/placeholder/about-portrait.jpg
+© KL Photography. Self-portrait, 2023. Original source: `photos/about/DSC01493.jpg`
+(4000x4919, Sony A7M3, ~14MB JPG). Astro's sharp pipeline resizes to
+`widths={[480, 720, 960]}` and emits AVIF/WebP variants at build time — the 14MB source
+is fine on disk because nothing >960px wide is ever served.
