@@ -1,1 +1,72 @@
 @import "tailwindcss";
+
+@theme {
+  /* ─── Color (palette: "Cream + Ink + Bronze" — D-05, RESEARCH.md §4) ── */
+  --color-cream: #FAF7F2;           /* page surface */
+  --color-cream-deep: #F0EAE0;      /* alt sections, cards */
+  --color-ink: #1A1A1A;             /* body + heading text */
+  --color-ink-soft: #4A4A4A;        /* captions, meta */
+  --color-bronze: #6B4423;          /* CTA, links, accent rules */
+  --color-bronze-hover: #553617;    /* hover state */
+  --color-rule: #DCD3C4;            /* hairlines, borders */
+
+  /* ─── Typography (RESEARCH.md §1, §2) ──────────────────── */
+  --font-serif: "EB Garamond", Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Static text tokens; clamp() headings live in @layer base (§3) */
+  --text-body: 1rem;                /* 16px base; sm:up step lives in @layer base */
+  --text-body--line-height: 1.65;   /* v4 token line-height companion */
+  --text-small: 0.875rem;           /* 14px */
+  --text-caption: 0.75rem;          /* 12px */
+
+  /* ─── Breakpoints (DESIGN-04: ≤640 / ≥1024 / ≥1280) ────── */
+  /* Intentionally NOT redeclaring --breakpoint-sm/--breakpoint-lg/--breakpoint-xl:
+     they already match Tailwind v4's defaults (40rem / 64rem / 80rem). Redeclaring
+     a subset of the breakpoint scale risks deactivating undeclared variants (e.g.
+     `md:`) and offers no value when the values are identical. Per RESEARCH.md A8
+     mitigation — DESIGN-04 is satisfied because Tailwind v4's default sm/lg/xl
+     match the required ≤640 / ≥1024 / ≥1280 boundaries exactly. */
+
+  /* ─── Spacing (single base; v4 derives the numeric scale) ── */
+  --spacing: 0.25rem;               /* 4px → p-1=4px, p-4=16px, p-12=48px, etc. */
+}
+
+@layer base {
+  html { font-family: var(--font-sans); color: var(--color-ink); }
+  body { background: var(--color-cream); }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+  h1 { font-size: clamp(2.5rem, 8vw, 7rem); line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.01em; }
+  h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.25; }
+  h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  p, li { font-size: 1rem; line-height: 1.65; max-width: 65ch; }
+  @media (min-width: 40rem) {
+    p, li { font-size: 1.125rem; }
+  }
+
+  small, figcaption { font-size: 0.875rem; line-height: 1.5; color: var(--color-ink-soft); }
+}
+
+/* Reduced-motion blanket rule (DESIGN-05, RESEARCH.md §7).
+   Belt-and-braces fallback for any animation/transition that ships without an
+   explicit motion-reduce: modifier. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
