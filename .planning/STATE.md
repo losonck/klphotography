@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 3 complete — Lighthouse a11y 100/100 on /; 10 human checkpoint sub-tests pending (sticky scroll/hamburger/reduced-motion browser tests per 03-03 SUMMARY)
-last_updated: "2026-05-17T18:00:00.000Z"
+status: in_progress
+stopped_at: Plan 04-01 complete — content collection + 18 owner photos + hero/about swap + logo integration shipped; 04-02 ready to dispatch
+last_updated: "2026-05-17T21:40:00.000Z"
 last_activity: 2026-05-17
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 7
-  completed_plans: 7
+  completed_plans: 8
   percent: 50
 ---
 
@@ -25,13 +25,13 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 ## Current Position
 
-Phase: 3 of 6 (Static Content Sections) — COMPLETE pending human checkpoint
-Plan: 3 of 3 in current phase (Hero/About/Pricing + Testimonials/Contact/Footer + sticky Nav/hamburger all shipped; Lighthouse a11y 100/100 on /)
-Status: Phase complete — ready to plan Phase 4 (Portfolio Gallery & Image Pipeline) after browser checkpoint
-Last activity: 2026-05-17 — Plan 03-03 shipped (sticky Nav + IntersectionObserver + hamburger + scroll-mt baseline; 3 commits + summary)
+Phase: 4 of 6 (Portfolio Gallery & Image Pipeline) — IN PROGRESS
+Plan: 1 of 3 complete in current phase (content collection + owner asset intake + hero/about/logo swap)
+Status: Plan 04-01 complete (7 commits + SUMMARY); 04-02 (gallery component) ready to dispatch
+Last activity: 2026-05-17 — Plan 04-01 shipped (18 curated photos + Astro 6 glob loader + Zod alt-lint active + hero/about/logo all owner content)
 
-Progress (Phase 3): [██████████] 100% (7/7 plans across Phases 1-3 of 6 complete)
-Overall: [████░░░░░░] 44% (7/16 plans across all phases)
+Progress (Phase 4): [███░░░░░░░] 33% (1/3 plans)
+Overall: [█████░░░░░] 50% (8/16 plans across all phases)
 
 ## Performance Metrics
 
@@ -53,11 +53,11 @@ Overall: [████░░░░░░] 44% (7/16 plans across all phases)
 |-------|------|----------|-------|-------|
 | 02 | 01 | ~6min | 3 | 3 |
 | 02 | 02 | ~7min | 3 | 7 |
+| 04 | 01 | ~50min | 6 (+1 auto-fix) | 31 |
 
 **Recent Trend:**
 
-- Last 2 plans: Plan 02-01 (~6min), Plan 02-02 (~7min)
-- Trend: Stable — primitive layer slightly larger than token layer (4 new components + styleguide page + robots edit), but still under 10 min per plan
+- Plan 04-01 ~50min — much larger scope than typical (owner asset intake + content collection + Astro 6 loader discovery + 3 placeholder swaps + logo integration); 31 files vs typical 3-7
 
 *Updated after each plan completion*
 
@@ -85,6 +85,10 @@ Recent decisions affecting current work:
 - Phase 2 (02-02): /styleguide ships in production with defense-in-depth noindex (per-page meta + robots.txt Disallow); sitemap exclusion deferred to Phase 6 06-01 (no sitemap config yet — explicit blocker note in 02-02-SUMMARY.md next-phase-readiness).
 - Phase 2 (02-02): BaseLayout <slot name=head /> placed AFTER <Font /> preloads with HTML comment documenting slot-ordering invariant — Phase 6 SEO meta injection must preserve this order so injected preload links do not preempt font preloads.
 - Phase 2 (02-02): Lighthouse mobile a11y on /styleguide scored 100/100 (lighthouse@13.3.0 headless) — 0 failed audits, 18 passed; bronze-on-cream ghost-hover mitigation NOT triggered (color-contrast passed at 1.0).
+- Phase 4 (04-01): Owner provided real wedding photo intake at execution time (~186MB in photos/); curated 18 with kebab-case names instead of 6-8 Unsplash placeholders. Raw intake gitignored.
+- Phase 4 (04-01): Astro 6 content collection requires explicit `loader: glob(...)` from `'astro/loaders'` — `type: 'data'` alone leaves the collection lazy and Zod inactive. Discovered during alt-lint break/fix test.
+- Phase 4 (04-01): Astro `<Image>` emits an intrinsic-width fallback variant ignoring `widths=[...]` prop — large sources (e.g. 14MB JPG) produce multi-MB fallback webps. Mitigation: pre-resize sources with sharp to ~4× the largest layout width before commit.
+- Phase 4 (04-01): Active GALLERY-05 alt-lint proven — blanking any `alt` fails `npm run build` with `InvalidContentEntryDataError gallery → {slug}: alt: Too small: expected string to have >=5 characters`.
 
 ### Pending Todos
 
@@ -93,7 +97,7 @@ None yet.
 ### Blockers/Concerns
 
 - Photographer's full name and bio copy not yet captured (needed by Phase 3)
-- Photo selection from local archive not yet captured (needed by Phase 4)
+- ~~Photo selection from local archive not yet captured (needed by Phase 4)~~ RESOLVED Phase 4-01: owner provided ~186MB raw intake in photos/; 18 curated to src/assets/portfolio/. Owner should review captions + alt text written by Claude before launch.
 - Resend account does not yet exist (needed by Phase 5)
 - ~~IEDR registrar identity for klphotography.ie not yet confirmed~~ RESOLVED Phase 1: maxer.ie
 
@@ -107,6 +111,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-17T18:00:00.000Z
-Stopped at: Phase 3 complete — Lighthouse a11y 100/100 on /; 10 browser sub-tests pending (sticky/hamburger/reduced-motion) per 03-03-SUMMARY
-Resume file: None
+Last session: 2026-05-17T21:40:00.000Z
+Stopped at: Plan 04-01 complete — content collection + Zod alt-lint + 18 curated photos + hero/about/logo swap shipped; ready for 04-02 (justified-grid gallery component)
+Resume file: .planning/phases/04-portfolio-gallery-image-pipeline/04-02-PLAN.md

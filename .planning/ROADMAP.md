@@ -79,7 +79,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: Import owner's photos into `src/assets/portfolio/`, define gallery metadata schema, lint for alt text
+- [x] 04-01: Import owner's photos into `src/assets/portfolio/`, define gallery metadata schema, lint for alt text
 - [ ] 04-02: Build justified-grid gallery component using Astro `<Picture>` with AVIF/WebP/responsive srcset
 - [ ] 04-03: Implement accessible lightbox + hero LCP optimization (preload, eager, AVIF budget)
 

@@ -51,9 +51,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **GALLERY-02**: Astro `<Picture>` pipeline generates AVIF + WebP + JPEG at multiple widths; correct `srcset` and `sizes`
 - [ ] **GALLERY-03**: Below-fold gallery thumbnails use `loading="lazy"` and `decoding="async"`; above-fold thumbnails are eager
 - [ ] **GALLERY-04**: Click on a thumbnail opens a lightbox (keyboard arrows + mobile swipe + ESC to close)
-- [ ] **GALLERY-05**: Every image has descriptive `alt` text stored in gallery metadata; CI fails build if any image is missing alt
-- [ ] **GALLERY-06**: Gallery metadata lives in `src/content/gallery/*.json` (or content collection) — caption, alt, sort order, optional EXIF
-- [ ] **GALLERY-07**: Photographer-supplied originals stored in `src/assets/portfolio/` (committed to repo or LFS if total > ~200 MB)
+- [x] **GALLERY-05**: Every image has descriptive `alt` text stored in gallery metadata; CI fails build if any image is missing alt
+- [x] **GALLERY-06**: Gallery metadata lives in `src/content/gallery/*.json` (or content collection) — caption, alt, sort order, optional EXIF
+- [x] **GALLERY-07**: Photographer-supplied originals stored in `src/assets/portfolio/` (committed to repo or LFS if total > ~200 MB)
 
 ### Contact Form Backend
 
@@ -179,9 +179,9 @@ Filled in during roadmap creation.
 | GALLERY-02 | Phase 4 | Pending |
 | GALLERY-03 | Phase 4 | Pending |
 | GALLERY-04 | Phase 4 | Pending |
-| GALLERY-05 | Phase 4 | Pending |
-| GALLERY-06 | Phase 4 | Pending |
-| GALLERY-07 | Phase 4 | Pending |
+| GALLERY-05 | Phase 4 (Plan 04-01) | Complete |
+| GALLERY-06 | Phase 4 (Plan 04-01) | Complete |
+| GALLERY-07 | Phase 4 (Plan 04-01) | Complete |
 | FORM-01 | Phase 5 | Pending |
 | FORM-02 | Phase 5 | Pending |
 | FORM-03 | Phase 5 | Pending |
