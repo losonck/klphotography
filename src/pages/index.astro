@@ -6,6 +6,9 @@ import Hero from '@/components/sections/Hero.astro';
 import PortfolioStub from '@/components/sections/PortfolioStub.astro';
 import About from '@/components/sections/About.astro';
 import Pricing from '@/components/sections/Pricing.astro';
+import Testimonials from '@/components/sections/Testimonials.astro';
+import Contact from '@/components/sections/Contact.astro';
+import SocialIcons from '@/components/icons/SocialIcons.astro';
 ---
 
 <BaseLayout
@@ -18,7 +21,29 @@ import Pricing from '@/components/sections/Pricing.astro';
     <PortfolioStub />
     <About />
     <Pricing />
-    <!-- 03-02 will append: <Testimonials /> + <Contact /> here, before </main> -->
+    <Testimonials />
+    <Contact />
   </main>
-  <Footer />
+  <Footer>
+    <p slot="brand" class="font-serif text-xl text-ink">KL Photography</p>
+    <ul slot="links" class="space-y-2">
+      <li><a href="/" class="hover:text-bronze">Home</a></li>
+      <li><a href="/#about" class="hover:text-bronze">About</a></li>
+      <li><a href="/#pricing" class="hover:text-bronze">Pricing</a></li>
+      <li><a href="/#testimonials" class="hover:text-bronze">Testimonials</a></li>
+      <li><a href="/#contact" class="hover:text-bronze">Contact</a></li>
+      <li><a href="/privacy" class="hover:text-bronze">Privacy</a></li>
+    </ul>
+    <div slot="social" class="flex gap-4">
+      <a href="https://instagram.com/klphotography.ie" aria-label="Instagram" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="instagram" />
+      </a>
+      <a href="https://facebook.com/[OWNER-CONFIRM:facebook-handle]" aria-label="Facebook" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="facebook" />
+      </a>
+      <a href="https://wa.me/353851665472" aria-label="WhatsApp" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="whatsapp" />
+      </a>
+    </div>
+  </Footer>
 </BaseLayout>

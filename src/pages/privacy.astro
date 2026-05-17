@@ -1,0 +1,59 @@
+<!-- src/pages/privacy.astro — Phase 3 stub per D-09 + RESEARCH §10. Phase 5 GDPR-01 replaces the body with the real policy; the route, the <noindex>, and the footer link all stay byte-identical so external links continue to resolve. -->
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Nav from '@/components/ui/Nav.astro';
+import Section from '@/components/ui/Section.astro';
+import Footer from '@/components/ui/Footer.astro';
+import SocialIcons from '@/components/icons/SocialIcons.astro';
+---
+
+<BaseLayout
+  title="Privacy policy — KL Photography"
+  description="How KL Photography handles personal data submitted via the contact form."
+>
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
+  <Nav />
+
+  <Section id="privacy" tone="cream">
+    <h1>Privacy policy</h1>
+    <p>
+      <strong>The full privacy policy will be published before launch.</strong>
+      For questions about how KL Photography handles personal data in the meantime,
+      please email
+      <a href="mailto:klphotography.ie@gmail.com" class="text-bronze hover:text-bronze-hover underline">klphotography.ie@gmail.com</a>.
+    </p>
+    <h2>Data we will collect</h2>
+    <p>When you submit the contact form, we receive your name, email address, and message, plus the optional wedding date and venue you provide.</p>
+    <h2>How we will use it</h2>
+    <p>To reply to your enquiry. We don't share, sell, or use it for marketing. The data is forwarded to the photographer's Gmail inbox and stored there.</p>
+    <h2>Your rights</h2>
+    <p>Under EU GDPR you have the right to access, correct, or delete the personal data we hold about you. Contact us to exercise any of these rights. If you're unhappy with our response, you can complain to the Irish Data Protection Commission.</p>
+    <p class="text-ink-soft text-sm mt-12">
+      <em>[OWNER-REVIEW] This is a Phase 3 placeholder. Phase 5 ships the legally-reviewed final policy.</em>
+    </p>
+  </Section>
+
+  <Footer>
+    <p slot="brand" class="font-serif text-xl text-ink">KL Photography</p>
+    <ul slot="links" class="space-y-2">
+      <li><a href="/" class="hover:text-bronze">Home</a></li>
+      <li><a href="/#about" class="hover:text-bronze">About</a></li>
+      <li><a href="/#pricing" class="hover:text-bronze">Pricing</a></li>
+      <li><a href="/#testimonials" class="hover:text-bronze">Testimonials</a></li>
+      <li><a href="/#contact" class="hover:text-bronze">Contact</a></li>
+      <li><a href="/privacy" class="hover:text-bronze">Privacy</a></li>
+    </ul>
+    <div slot="social" class="flex gap-4">
+      <a href="https://instagram.com/klphotography.ie" aria-label="Instagram" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="instagram" />
+      </a>
+      <a href="https://facebook.com/[OWNER-CONFIRM:facebook-handle]" aria-label="Facebook" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="facebook" />
+      </a>
+      <a href="https://wa.me/353851665472" aria-label="WhatsApp" class="motion-safe:transition-colors hover:text-bronze">
+        <SocialIcons brand="whatsapp" />
+      </a>
+    </div>
+  </Footer>
+</BaseLayout>
