@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import { Font } from 'astro:assets';
 
 interface Props {
   title: string;
@@ -16,10 +17,12 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Font cssVariable="--font-serif" preload />
+    <Font cssVariable="--font-sans" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
   </head>
-  <body>
+  <body class="bg-cream text-ink font-sans antialiased">
     <slot />
   </body>
 </html>
