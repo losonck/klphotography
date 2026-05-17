@@ -9,14 +9,16 @@ interface Props extends HTMLAttributes<'nav'> {
 
 const { brand = 'KL Photography', class: className, ...rest } = Astro.props;
 
-// Per D-03: NO #portfolio link in Phase 3. Five links: Home (#hero) / About / Pricing / Testimonials / Contact.
-// (Phase 4 plan will insert #portfolio when the real gallery ships.)
+// Phase 4 (04-02): Portfolio link restored between Home and About; all hrefs use
+// /#anchor form so future top-level pages (e.g. /privacy) can still link back to
+// the home-page sections without breaking (RESEARCH §12).
 const links = [
-  { href: '#hero', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#hero',         label: 'Home' },
+  { href: '/#portfolio',    label: 'Portfolio' },
+  { href: '/#about',        label: 'About' },
+  { href: '/#pricing',      label: 'Pricing' },
+  { href: '/#testimonials', label: 'Testimonials' },
+  { href: '/#contact',      label: 'Contact' },
 ];
 ---
 
