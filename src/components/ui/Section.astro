@@ -14,7 +14,14 @@ const toneClass = tone === 'cream-deep' ? 'bg-cream-deep' : 'bg-cream';
 
 <section
   id={id}
-  class:list={[toneClass, 'py-16 sm:py-24 lg:py-32', className]}
+  class:list={[
+    toneClass,
+    'py-16 sm:py-24 lg:py-32',
+    /* scroll-margin-top baseline so anchor jumps land clear of sticky Nav
+       (Nav intrinsic height ≈ 64px mobile / 80px desktop; scroll-mt-20=5rem=80px, lg:scroll-mt-24=6rem=96px). Per D-08 + RESEARCH §4. */
+    'scroll-mt-20 lg:scroll-mt-24',
+    className,
+  ]}
   {...rest}
 >
   <div class="mx-auto max-w-6xl px-6 sm:px-8">
