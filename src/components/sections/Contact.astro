@@ -1,0 +1,94 @@
+<!-- [OWNER-REVIEW] Contact — form UI (no backend; Phase 5 wires fetch) + direct contact block (tel/mailto + IG/FB/WA icons via SocialIcons). FACEBOOK URL DELIBERATELY BROKEN per D-05 to block accidental ship. -->
+---
+import Section from '@/components/ui/Section.astro';
+import Button from '@/components/ui/Button.astro';
+import SocialIcons from '@/components/icons/SocialIcons.astro';
+---
+
+<Section id="contact" tone="cream-deep">
+  <h2>Get in touch</h2>
+  <p class="mt-6">Tell me about your day and I'll come back to you within two working days. If you'd rather talk, phone or WhatsApp works too.</p>
+
+  <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div class="lg:col-span-2">
+      <form class="space-y-6" id="contact-form" novalidate>
+        <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label>Don't fill this in <input type="text" name="contact_company" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div>
+          <label for="cf-name">Name<span aria-hidden="true">&nbsp;*</span></label>
+          <input id="cf-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name"
+            class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze" />
+        </div>
+
+        <div>
+          <label for="cf-email">Email<span aria-hidden="true">&nbsp;*</span></label>
+          <input id="cf-email" name="email" type="email" required inputmode="email" autocomplete="email"
+            class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze" />
+        </div>
+
+        <div>
+          <label for="cf-date">Wedding date <span class="text-ink-soft font-normal">(optional)</span></label>
+          <input id="cf-date" name="wedding_date" type="date"
+            class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze" />
+        </div>
+
+        <div>
+          <label for="cf-venue">Venue <span class="text-ink-soft font-normal">(optional)</span></label>
+          <input id="cf-venue" name="venue" type="text" maxlength="200" autocomplete="off"
+            class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze" />
+        </div>
+
+        <div>
+          <label for="cf-message">About your day<span aria-hidden="true">&nbsp;*</span></label>
+          <textarea id="cf-message" name="message" required minlength="20" maxlength="2000" rows="6"
+            class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze"></textarea>
+        </div>
+
+        {/* Phase 5: <div class="cf-turnstile" data-sitekey="YOUR-PUBLIC-SITE-KEY"></div> */}
+
+        <p class="text-sm text-ink-soft">By submitting, you'll receive a reply within two working days. We don't share your details. Privacy: <a href="/privacy" class="text-bronze hover:text-bronze-hover underline">how we handle this</a>.</p>
+
+        <Button type="submit" variant="primary" size="lg" loading={false}>Send enquiry</Button>
+
+        <p id="cf-notice" class="hidden text-sm text-ink-soft" role="status" aria-live="polite"></p>
+      </form>
+
+      <script>
+        const form = document.getElementById('contact-form');
+        const notice = document.getElementById('cf-notice');
+        form?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (form instanceof HTMLFormElement && !form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          if (notice) {
+            notice.classList.remove('hidden');
+            notice.textContent = 'Form not yet active — please use phone / email / WhatsApp below.';
+          }
+        });
+      </script>
+    </div>
+
+    <aside class="space-y-6">
+      <p class="text-ink-soft">Or reach me directly:</p>
+      <ul class="space-y-3">
+        <li><a href="tel:+353851665472" class="text-bronze hover:text-bronze-hover underline">+353 85 166 5472</a></li>
+        <li><a href="mailto:klphotography.ie@gmail.com" class="text-bronze hover:text-bronze-hover underline">klphotography.ie@gmail.com</a></li>
+      </ul>
+      <div class="flex gap-4 pt-4 border-t border-rule">
+        <a href="https://instagram.com/klphotography.ie" aria-label="Instagram" class="motion-safe:transition-colors hover:text-bronze">
+          <SocialIcons brand="instagram" />
+        </a>
+        <a href="https://facebook.com/[OWNER-CONFIRM:facebook-handle]" aria-label="Facebook" class="motion-safe:transition-colors hover:text-bronze">
+          <SocialIcons brand="facebook" />
+        </a>
+        <a href="https://wa.me/353851665472" aria-label="WhatsApp" class="motion-safe:transition-colors hover:text-bronze">
+          <SocialIcons brand="whatsapp" />
+        </a>
+      </div>
+    </aside>
+  </div>
+</Section>
