@@ -37,13 +37,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Content Sections (single-page IA)
 
-- [ ] **CONTENT-01**: Hero section — full-bleed photo, photographer name, tagline, primary "Enquire" CTA anchoring to #contact
-- [ ] **CONTENT-02**: About section — photographer story, portrait photo, approach
-- [ ] **CONTENT-03**: Pricing section — 6-hour and 10-hour coverage tiers, what's included (≈400–500 edited photos, 3-month online gallery, optional album), starting-from price displayed
-- [ ] **CONTENT-04**: Testimonials section — 3–6 quotes with client names (sourced from existing Wix site or fresh)
-- [ ] **CONTENT-05**: Contact section — contact form, WhatsApp link, phone (+353 85 166 5472), email (klphotography.ie@gmail.com), Instagram and Facebook links
-- [ ] **CONTENT-06**: Sticky top nav with smooth-scroll anchors to each section; collapses to hamburger on mobile
-- [ ] **CONTENT-07**: Footer with copyright, privacy link, social icons
+- [x] **CONTENT-01**: Hero section — full-bleed photo, photographer name, tagline, primary "Enquire" CTA anchoring to #contact
+- [x] **CONTENT-02**: About section — photographer story, portrait photo, approach
+- [x] **CONTENT-03**: Pricing section — 6-hour and 10-hour coverage tiers, what's included (≈400–500 edited photos, 3-month online gallery, optional album), starting-from price displayed
+- [x] **CONTENT-04**: Testimonials section — 3–6 quotes with client names (sourced from existing Wix site or fresh)
+- [x] **CONTENT-05**: Contact section — contact form, WhatsApp link, phone (+353 85 166 5472), email (klphotography.ie@gmail.com), Instagram and Facebook links
+- [x] **CONTENT-06**: Sticky top nav with smooth-scroll anchors to each section; collapses to hamburger on mobile
+- [x] **CONTENT-07**: Footer with copyright, privacy link, social icons
 
 ### Portfolio Gallery
 
@@ -168,13 +168,13 @@ Filled in during roadmap creation.
 | DESIGN-04 | Phase 2 | Complete |
 | DESIGN-05 | Phase 2 | Complete |
 | DESIGN-06 | Phase 5 | Complete |
-| CONTENT-01 | Phase 3 | Pending |
-| CONTENT-02 | Phase 3 | Pending |
-| CONTENT-03 | Phase 3 | Pending |
-| CONTENT-04 | Phase 3 | Pending |
-| CONTENT-05 | Phase 3 | Pending |
-| CONTENT-06 | Phase 3 | Pending |
-| CONTENT-07 | Phase 3 | Pending |
+| CONTENT-01 | Phase 3 | Complete |
+| CONTENT-02 | Phase 3 | Complete |
+| CONTENT-03 | Phase 3 | Complete |
+| CONTENT-04 | Phase 3 | Complete |
+| CONTENT-05 | Phase 3 | Complete |
+| CONTENT-06 | Phase 3 | Complete |
+| CONTENT-07 | Phase 3 | Complete |
 | GALLERY-01 | Phase 4 | Pending |
 | GALLERY-02 | Phase 4 | Pending |
 | GALLERY-03 | Phase 4 | Pending |

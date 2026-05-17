@@ -63,9 +63,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Build Hero + About + Pricing sections with placeholder copy
-- [ ] 03-02: Build Testimonials + Contact (UI only) + Footer
-- [ ] 03-03: Implement sticky nav with smooth-scroll anchors and mobile hamburger
+- [x] 03-01: Build Hero + About + Pricing sections with placeholder copy
+- [x] 03-02: Build Testimonials + Contact (UI only) + Footer
+- [x] 03-03: Implement sticky nav with smooth-scroll anchors and mobile hamburger
 
 ### Phase 4: Portfolio Gallery & Image Pipeline
 **Goal**: Replace placeholder Hero/About images with optimized originals and ship the curated portfolio grid + lightbox, hitting the hero LCP and CLS targets.
