@@ -16,6 +16,8 @@ real wedding moment without coupling Hero.astro to the gallery's content collect
 
 ## About portrait — src/assets/placeholder/about-portrait.jpg
 © KL Photography. Self-portrait, 2023. Original source: `photos/about/DSC01493.jpg`
-(4000x4919, Sony A7M3, ~14MB JPG). Astro's sharp pipeline resizes to
-`widths={[480, 720, 960]}` and emits AVIF/WebP variants at build time — the 14MB source
-is fine on disk because nothing >960px wide is ever served.
+(4000x4919, Sony A7M3, ~14MB JPG). Pre-resized to 1920x2361 (~1MB) before commit so
+Astro's "original-size fallback" variant in `<picture>` srcset stays under 700KB —
+Astro `<Image>` emits a fallback at the source's intrinsic width regardless of
+the `widths=[480,720,960]` prop, and a 14MB source produced a 2.8MB fallback webp.
+1920 keeps 4× density vs the largest layout width (960) for HiDPI screens.
