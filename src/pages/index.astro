@@ -9,12 +9,16 @@ import Pricing from '@/components/sections/Pricing.astro';
 import Testimonials from '@/components/sections/Testimonials.astro';
 import Contact from '@/components/sections/Contact.astro';
 import SocialIcons from '@/components/icons/SocialIcons.astro';
+import HeroPreload from '@/components/HeroPreload.astro';
 ---
 
 <BaseLayout
   title="KL Photography — Wedding Photographer, Dublin, Ireland"
   description="Dublin-based wedding photographer for couples who want to remember the quiet moments. Documentary coverage across Ireland."
 >
+  <Fragment slot="head">
+    <HeroPreload />
+  </Fragment>
   <Nav />
   <main>
     <Hero />
