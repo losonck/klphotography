@@ -1,0 +1,26 @@
+<!-- [OWNER-REVIEW] Hero — full-bleed photo + tagline + CTA per CONTENT-01 -->
+---
+import { Picture } from 'astro:assets';
+import Section from '@/components/ui/Section.astro';
+import Button from '@/components/ui/Button.astro';
+import hero from '@/assets/placeholder/hero.jpg';
+---
+
+<Section id="hero" tone="cream" class="relative overflow-hidden p-0">
+  <Picture
+    src={hero}
+    formats={['avif', 'webp']}
+    widths={[640, 1024, 1536, 1920, 2400]}
+    sizes="100vw"
+    alt="[OWNER-REVIEW] placeholder hero — wedding moment, to be replaced in Phase 4"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 bg-ink/30" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-6 sm:px-8 pb-16 sm:pb-24 lg:pb-32 pt-32 sm:pt-40">
+    <h1 class="text-cream">Wedding photography for couples<br />who want to remember the quiet moments.</h1>
+    <p class="text-cream mt-6 text-lg">Dublin-based. Nationwide. Documentary, calm, present.</p>
+    <Button as="a" href="#contact" variant="primary" size="lg" class="mt-10">Enquire</Button>
+  </div>
+</Section>
