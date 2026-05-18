@@ -12,9 +12,12 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "dev:full": "npm run build && wrangler pages dev dist/"
+    "dev:full": "npm run build && wrangler pages dev dist/",
+    "build:og-card": "node scripts/build-og-card.mjs",
+    "build:apple-touch-icon": "node scripts/build-apple-touch-icon.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.3.3",
     "justified-layout": "^4.1.0",
     "photoswipe": "^5.4.4",

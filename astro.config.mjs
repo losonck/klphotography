@@ -1,9 +1,17 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://klphotography.ie',
   output: 'static',
+  integrations: [
+    sitemap({
+      // Exclude /styleguide (design reference, robots.txt Disallow) from the sitemap.
+      // /privacy stays included — GDPR transparency, indexable per RESEARCH §3 Q2.
+      filter: (page) => !page.includes('/styleguide'),
+    }),
+  ],
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
