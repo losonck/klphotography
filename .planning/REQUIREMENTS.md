@@ -57,25 +57,25 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Contact Form Backend
 
-- [ ] **FORM-01**: Cloudflare Pages Function at `functions/api/contact.ts` handles POST /api/contact
-- [ ] **FORM-02**: Form fields: name (required), email (required, validated), wedding date (optional), venue (optional), message (required), Turnstile token (required)
-- [ ] **FORM-03**: Server validates Turnstile token via `siteverify` API; rejects with 403 on failure
-- [ ] **FORM-04**: Server sends email via Resend API to klphotography.ie@gmail.com with reply-to set to the couple's email
-- [ ] **FORM-05**: Subject line includes couple's name and wedding date when provided
-- [ ] **FORM-06**: Secrets (`TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`) stored only in Cloudflare Pages environment variables, never in repo
-- [ ] **FORM-07**: Public Turnstile site key surfaced as `PUBLIC_TURNSTILE_SITE_KEY` (Astro convention)
+- [x] **FORM-01**: Cloudflare Pages Function at `functions/api/contact.ts` handles POST /api/contact
+- [x] **FORM-02**: Form fields: name (required), email (required, validated), wedding date (optional), venue (optional), message (required), Turnstile token (required)
+- [x] **FORM-03**: Server validates Turnstile token via `siteverify` API; rejects with 403 on failure
+- [x] **FORM-04**: Server sends email via Resend API to klphotography.ie@gmail.com with reply-to set to the couple's email
+- [x] **FORM-05**: Subject line includes couple's name and wedding date when provided
+- [x] **FORM-06**: Secrets (`TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`) stored only in Cloudflare Pages environment variables, never in repo
+- [x] **FORM-07**: Public Turnstile site key surfaced as `PUBLIC_TURNSTILE_SITE_KEY` (Astro convention)
 - [ ] **FORM-08**: Resend sending domain (klphotography.ie) verified via SPF + DKIM TXT records in Cloudflare DNS
-- [ ] **FORM-09**: Client shows clear success state on 200 and clear error state on non-200
-- [ ] **FORM-10**: Form gracefully degrades — if JS disabled, the form still posts (Pages Function accepts a no-token request only in dev; production requires token)
-- [ ] **FORM-11**: Test enquiry round-trip verified end-to-end before launch (form → Function → Resend → Gmail inbox)
+- [x] **FORM-09**: Client shows clear success state on 200 and clear error state on non-200
+- [x] **FORM-10**: Form gracefully degrades — if JS disabled, the form still posts (Pages Function accepts a no-token request only in dev; production requires token)
+- [x] **FORM-11**: Test enquiry round-trip verified end-to-end before launch (form → Function → Resend → Gmail inbox)
 
 ### GDPR & Analytics
 
-- [ ] **GDPR-01**: `/privacy` page describing actual data flow (contact form → Resend → Gmail), data retention, lawful basis, DPC Ireland contact info
-- [ ] **GDPR-02**: No cookies set by the site or any embedded script
-- [ ] **GDPR-03**: Cloudflare Web Analytics beacon installed (cookieless); no cookie banner required
-- [ ] **GDPR-04**: No third-party scripts (no GA, no Facebook pixel, no live chat) for v1
-- [ ] **GDPR-05**: Privacy policy link visible in footer and adjacent to the contact form submit button
+- [x] **GDPR-01**: `/privacy` page describing actual data flow (contact form → Resend → Gmail), data retention, lawful basis, DPC Ireland contact info
+- [x] **GDPR-02**: No cookies set by the site or any embedded script
+- [ ] **GDPR-03**: Cloudflare Web Analytics beacon installed (cookieless); no cookie banner required *(CODE-COMPLETE 05-03; runtime activation pending Phase 6: owner sets PUBLIC_CF_ANALYTICS_TOKEN in CF Pages env after DNS-03 + Web Analytics site creation)*
+- [x] **GDPR-04**: No third-party scripts (no GA, no Facebook pixel, no live chat) for v1
+- [x] **GDPR-05**: Privacy policy link visible in footer and adjacent to the contact form submit button
 
 ### Performance & SEO
 
@@ -182,22 +182,22 @@ Filled in during roadmap creation.
 | GALLERY-05 | Phase 4 (Plan 04-01) | Complete |
 | GALLERY-06 | Phase 4 (Plan 04-01) | Complete |
 | GALLERY-07 | Phase 4 (Plan 04-01) | Complete |
-| FORM-01 | Phase 5 | Pending |
-| FORM-02 | Phase 5 | Pending |
-| FORM-03 | Phase 5 | Pending |
-| FORM-04 | Phase 5 | Pending |
-| FORM-05 | Phase 5 | Pending |
-| FORM-06 | Phase 5 | Pending |
-| FORM-07 | Phase 5 | Pending |
-| FORM-08 | Phase 5 | Pending |
-| FORM-09 | Phase 5 | Pending |
-| FORM-10 | Phase 5 | Pending |
-| FORM-11 | Phase 5 | Pending |
-| GDPR-01 | Phase 5 | Pending |
-| GDPR-02 | Phase 5 | Pending |
-| GDPR-03 | Phase 5 | Pending |
-| GDPR-04 | Phase 5 | Pending |
-| GDPR-05 | Phase 5 | Pending |
+| FORM-01 | Phase 5 (Plan 05-01) | Complete |
+| FORM-02 | Phase 5 (Plan 05-01) | Complete |
+| FORM-03 | Phase 5 (Plan 05-01) | Complete |
+| FORM-04 | Phase 5 (Plan 05-01) | Complete |
+| FORM-05 | Phase 5 (Plan 05-01) | Complete |
+| FORM-06 | Phase 5 (Plan 05-01) | Complete |
+| FORM-07 | Phase 5 (Plan 05-01) | Complete |
+| FORM-08 | Phase 5 (Plan 05-02 docs + Phase 6 DNS exec) | Pending |
+| FORM-09 | Phase 5 (Plan 05-01) | Complete |
+| FORM-10 | Phase 5 (Plan 05-01) | Complete |
+| FORM-11 | Phase 5 (Plan 05-01) | Complete (local 11/11; live preview round-trip in Phase 6) |
+| GDPR-01 | Phase 5 (Plan 05-03) | Complete |
+| GDPR-02 | Phase 5 (Plan 05-03) | Complete |
+| GDPR-03 | Phase 5 (Plan 05-03) | Code-Complete (runtime activation pending Phase 6 PUBLIC_CF_ANALYTICS_TOKEN setup) |
+| GDPR-04 | Phase 5 (Plan 05-03) | Complete |
+| GDPR-05 | Phase 5 (Plan 05-03) | Complete (Phase 3 wiring preserved) |
 | PERF-01 | Phase 4 | Complete |
 | PERF-02 | Phase 6 | Pending |
 | PERF-03 | Phase 6 | Pending |

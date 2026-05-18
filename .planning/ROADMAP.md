@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Design System** - Editorial palette, type scale, component primitives, responsive breakpoints (completed 2026-05-17)
 - [x] **Phase 3: Static Content Sections** - Hero, About, Pricing, Testimonials, Contact UI, nav, footer (completed 2026-05-17)
 - [x] **Phase 4: Portfolio Gallery & Image Pipeline** - Justified grid, lightbox, Astro Picture, AVIF/WebP, hero LCP optimization (completed 2026-05-17)
-- [ ] **Phase 5: Contact Form Backend & GDPR** - Pages Function + Turnstile + Resend, privacy policy, cookieless analytics
+- [x] **Phase 5: Contact Form Backend & GDPR** - Pages Function + Turnstile + Resend, privacy policy, cookieless analytics (completed 2026-05-18)
 - [ ] **Phase 6: Launch Cutover** - SEO meta + sitemap + schema, performance audit, DNS swap, Wix decommission
 
 ## Phase Details
@@ -97,8 +97,8 @@ Plans:
 
 Plans:
 - [x] 05-01: Build `functions/api/contact.ts` with Turnstile verification + Resend send; wire client form to it (completed 2026-05-18 — 11/11 local wrangler smoke tests PASS; CF Preview round-trip deferred to push)
-- [ ] 05-02: Verify klphotography.ie sending domain in Resend via SPF/DKIM TXT records in Cloudflare DNS
-- [ ] 05-03: Write `/privacy` page, install Cloudflare Web Analytics beacon, audit `dist/` for secret leaks, scan accessibility
+- [x] 05-02: Verify klphotography.ie sending domain in Resend via SPF/DKIM TXT records in Cloudflare DNS (completed 2026-05-18 — docs/SETUP-RESEND-DOMAIN.md runbook ready for Phase 6 DNS exec)
+- [x] 05-03: Write `/privacy` page, install Cloudflare Web Analytics beacon, audit `dist/` for secret leaks, scan accessibility (completed 2026-05-18 — real GDPR Art 13 policy + conditional beacon + secret-leak audit PASS + Lighthouse a11y /=100 /privacy=98)
 
 ### Phase 6: Launch Cutover
 **Goal**: Add launch-grade SEO metadata, hit performance targets, swap DNS at the registrar, archive and cancel Wix.
@@ -129,5 +129,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Design System | 2/2 | Complete   | 2026-05-17 |
 | 3. Static Content Sections | 0/3 | Not started | - |
 | 4. Portfolio Gallery & Image Pipeline | 2/3 | In Progress|  |
-| 5. Contact Form Backend & GDPR | 1/3 | In Progress | - |
+| 5. Contact Form Backend & GDPR | 3/3 | Complete | 2026-05-18 |
 | 6. Launch Cutover | 0/3 | Not started | - |

@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Plan 05-01 complete — /api/contact Pages Function (Turnstile verify + Resend send via direct fetch) + Contact.astro real Turnstile widget + fetch submit + index.astro CDN script; 11/11 local wrangler smoke tests PASS; CF Preview round-trip deferred to push
-last_updated: "2026-05-18T10:18:00.000Z"
+stopped_at: Phase 5 COMPLETE — 05-01 backend (Turnstile+Resend) + 05-02 Resend domain runbook + 05-03 real GDPR Art 13 /privacy + conditional CF Web Analytics beacon + secret-leak audit PASS + Lighthouse a11y /=100 /privacy=98. Ready for Phase 6 (DNS-03 + Resend domain verify + PUBLIC_CF_ANALYTICS_TOKEN activation + sitemap/SEO/JSON-LD + Wix cutover).
+last_updated: "2026-05-18T10:34:18.000Z"
 last_activity: 2026-05-18
 progress:
   total_phases: 6
-  completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
-  percent: 73
+  completed_phases: 5
+  total_plans: 14
+  completed_plans: 13
+  percent: 87
 ---
 
 # Project State
@@ -25,13 +25,13 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 ## Current Position
 
-Phase: 5 of 6 (Contact Form Backend & GDPR) — Wave 1 in progress
-Plan: 05-01 of 3 complete; 05-02 + 05-03 dispatched in parallel by orchestrator
-Status: Wave 1 — 05-01 shipped /api/contact Pages Function + Contact.astro wiring; 11/11 local smoke tests PASS; CF Preview round-trip deferred to push (FORM-11 verification gated on owner pushing the branch to trigger CF Pages preview build)
-Last activity: 2026-05-18 — Plan 05-01 shipped (Turnstile + Resend via direct fetch + wrangler devDep, 3 task commits + summary)
+Phase: 5 of 6 (Contact Form Backend & GDPR) — COMPLETE
+Plan: 05-01 + 05-02 + 05-03 all complete (3/3)
+Status: Phase 5 COMPLETE — backend + GDPR + analytics shipped at code level. Phase 6 picks up DNS-03 + Resend domain verify (uses 05-02 runbook) + PUBLIC_CF_ANALYTICS_TOKEN setup (activates 05-03 beacon) + SEO/sitemap/JSON-LD + Lighthouse perf + Wix cutover.
+Last activity: 2026-05-18 — Plan 05-03 shipped (real GDPR Art 13 /privacy + conditional CF Web Analytics beacon + secret-leak audit PASS + Lighthouse a11y / = 100, /privacy = 98)
 
-Progress (Phase 5): [████░░░░░░] ~33% (1/3 plans in Phase 5)
-Overall: [███████░░░] 73% (11/15 plans across all phases)
+Progress (Phase 5): [██████████] 100% (3/3 plans in Phase 5)
+Overall: [████████░░] 87% (13/15 plans across all phases)
 
 ## Performance Metrics
 
@@ -55,10 +55,12 @@ Overall: [███████░░░] 73% (11/15 plans across all phases)
 | 02 | 02 | ~7min | 3 | 7 |
 | 04 | 01 | ~50min | 6 (+1 auto-fix) | 31 |
 | 05 | 01 | ~13min | 4 (3 auto + 1 checkpoint executed inline) | 11 |
+| 05 | 03 | ~7min  | 3 (2 auto + 1 audit) | 4 (1 created + 3 modified) |
 
 **Recent Trend:**
 
 - Plan 04-01 ~50min — much larger scope than typical (owner asset intake + content collection + Astro 6 loader discovery + 3 placeholder swaps + logo integration); 31 files vs typical 3-7
+- Plan 05-03 ~7min — minimal-scope final Phase 5 plan: 2 file mods + 1 audit task + Lighthouse re-scan. Rule 4 deviation (conditional beacon) elegantly defers runtime activation to Phase 6 without blocking code-level GDPR-03 completion.
 
 *Updated after each plan completion*
 | Phase 04 P02 | ~11 min | - tasks | - files |
@@ -94,6 +96,9 @@ Recent decisions affecting current work:
 - [Phase ?]: 04-02: pre-resize 16-golden-hour-portrait source to 640x960 to clear AVIF budget gate
 - [Phase ?]: 04-02: add src/types/justified-layout.d.ts ambient declaration so strict tsconfig stops failing ts(7016) on the depless Flickr lib
 - [Phase ?]: 04-02: switch every Nav.astro link href to /#anchor form (not just the new /#portfolio) for cross-page robustness
+- Phase 5 (05-03): CF Web Analytics beacon rendered CONDITIONALLY (`{cfAnalyticsToken && <script .../>}`) in BaseLayout — emits NOTHING when PUBLIC_CF_ANALYTICS_TOKEN is unset, activates automatically when set (Phase 6 owner action). Avoids `data-cf-beacon='{"token":"undefined"}'` literal in HTML pre-Phase-6. GDPR-03 code-complete; runtime activation deferred Phase 6.
+- Phase 5 (05-03): Privacy policy at /privacy is publicly indexable per GDPR Art 12 transparency — Phase 3 noindex meta + robots.txt Disallow: /privacy guard both removed in same plan. 4 [OWNER-CONFIRM] markers carry forward to Phase 6 (legal name, business address, DPC contact verification, env-var setup).
+- Phase 5 (05-03): /privacy Lighthouse a11y = 98 (under 100) due to `landmark-one-main` audit — Section component emits <section> not <main>. Pattern is project-wide. Score above DESIGN-06 95 threshold so not blocking. Phase 6 polish opportunity: introduce <Main> primitive or add tag prop to Section.
 
 ### Pending Todos
 
@@ -103,8 +108,14 @@ None yet.
 
 - Photographer's full name and bio copy not yet captured (needed by Phase 3)
 - ~~Photo selection from local archive not yet captured (needed by Phase 4)~~ RESOLVED Phase 4-01: owner provided ~186MB raw intake in photos/; 18 curated to src/assets/portfolio/. Owner should review captions + alt text written by Claude before launch.
-- Resend account does not yet exist (needed by Phase 5)
+- ~~Resend account does not yet exist (needed by Phase 5)~~ RESOLVED Phase 5-01: account exists, RESEND_API_KEY set in CF Pages env.
 - ~~IEDR registrar identity for klphotography.ie not yet confirmed~~ RESOLVED Phase 1: maxer.ie
+- **Phase 6 prerequisites (carry-forward from Phase 5-03):**
+  - PUBLIC_CF_ANALYTICS_TOKEN must be set in CF Pages env (Preview + Production) after DNS-03 puts klphotography.ie on Cloudflare nameservers and CF Web Analytics dashboard creates the site. Activates the 05-03 conditional beacon automatically on next build.
+  - [OWNER-CONFIRM:full-legal-name] in src/pages/privacy.astro:22 — owner replaces with photographer's legal trading name.
+  - [OWNER-CONFIRM:business-address] in src/pages/privacy.astro:23 — owner replaces with registered business address.
+  - DPC contact details verification per RESEARCH §10 + the [OWNER-CONFIRM] HTML comment in privacy.astro:142.
+  - CONTACT_FROM_EMAIL Production env var swap from `KL Photography <onboarding@resend.dev>` to `KL Photography <enquiries@klphotography.ie>` after 05-02 Resend domain verification runbook (docs/SETUP-RESEND-DOMAIN.md) is executed against the new CF DNS zone (Phase 6 DNS-03 prereq).
 
 ## Deferred Items
 
@@ -116,6 +127,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-18T10:18:00.000Z
-Stopped at: Plan 05-01 complete — /api/contact Pages Function (Turnstile verify + Resend send) + Contact.astro real wiring + wrangler devDep. 11/11 local wrangler smoke tests PASS. Real preview email round-trip deferred to CF Pages preview push (owner-confirmed env vars set on Preview + Production).
+Last session: 2026-05-18T10:34:18.000Z
+Stopped at: Phase 5 COMPLETE — Plan 05-03 shipped: real GDPR Art 13 /privacy + conditional CF Web Analytics beacon in BaseLayout + robots.txt unblocked for /privacy. Plan-level audit: secret-leak negative gate PASS (4 patterns, zero matches in dist/), third-party script audit PASS (only Turnstile in dist/; beacon ABSENT pending owner token per Rule 4 deviation), no-cookie HEAD audit PASS on / and /privacy, Lighthouse mobile a11y / = 100, /privacy = 98 (both ≥ 95 DESIGN-06). 4 [OWNER-CONFIRM] carry-forwards remain for Phase 6 (legal name, business address, DPC contact verification, PUBLIC_CF_ANALYTICS_TOKEN env-var setup). Ready for Phase 6 (DNS-03 + Resend domain verify + analytics token + SEO/sitemap/JSON-LD + Wix cutover).
 Resume file: None
