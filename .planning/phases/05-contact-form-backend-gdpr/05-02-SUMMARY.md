@@ -69,12 +69,13 @@ completed: 2026-05-18
 
 ## Task Commits
 
-Each task was committed atomically per the orchestrator brief (single combined commit for runbook + summary, since this is a docs-only single-task plan):
+Each task was committed atomically per the orchestrator brief. Due to a Wave 1 parallel-executor working-tree collision (see Deviations §5), the 05-02 files landed in a sibling plan's commit rather than a dedicated `docs(05-02): ...` commit:
 
-1. **Task 1: Draft docs/SETUP-RESEND-DOMAIN.md runbook** — committed as part of the combined commit below.
-2. **Task 2: Owner review checkpoint** — DEFERRED to orchestrator (see Deviations §1); no separate commit.
+1. **Task 1: Draft docs/SETUP-RESEND-DOMAIN.md runbook** — files staged for commit `docs(05-02): SETUP-RESEND-DOMAIN.md + summary`, but absorbed by the concurrent 05-01 executor's commit `9780f0d feat(05-01): add /api/contact Pages Function (Turnstile verify + Resend send)`. `docs/SETUP-RESEND-DOMAIN.md` (201 lines) and the initial `05-02-SUMMARY.md` are both present in `git show 9780f0d`.
+2. **Task 2: Owner review checkpoint** — DEFERRED to orchestrator (see Deviations §3); no separate commit.
 
-**Plan metadata + runbook commit:** `[hash recorded post-commit]` — `docs(05-02): SETUP-RESEND-DOMAIN.md + summary`
+**Files-of-record commit (in git history):** `9780f0d` — confirmed via `git log --all --oneline -- docs/SETUP-RESEND-DOMAIN.md` and `git log --all --oneline -- .planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` (both return only `9780f0d`).
+**Corrective 05-02 metadata commit:** `[hash recorded post-corrective-commit]` — `docs(05-02): record summary corrections after Wave 1 commit collision` (this updates 05-02-SUMMARY.md only — runbook content is unchanged from `9780f0d`).
 
 ## Files Created/Modified
 
@@ -125,6 +126,16 @@ Plan-level verification (per `<plan_level_verification>` in 05-02-PLAN.md):
 - **Fix:** Verified by running `git diff --stat HEAD` and `git diff --stat HEAD -- .gitignore package.json package-lock.json` — both empty at commit time. Final commit stages ONLY `docs/SETUP-RESEND-DOMAIN.md` and `.planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md`. No `git add .` / `git add -A` used.
 - **No action required** — just noting for the audit trail.
 
+### 5. [Wave 1 parallel-executor collision] 05-02 files absorbed by sibling 05-01's commit
+
+- **Found during:** Final commit step. I ran `git add docs/SETUP-RESEND-DOMAIN.md .planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` (only my own files, by absolute path — no `git add .` / `git add -A`), then `git commit -m "docs(05-02): ..."`. The commit returned `nothing to commit, working tree clean` and HEAD was at `9780f0d feat(05-01): add /api/contact Pages Function (Turnstile verify + Resend send)`.
+- **Root cause:** The sibling Wave 1 executor for 05-01 was running concurrently in the same repository working tree (this is NOT a Claude Code worktree — `[ -f .git ]` is false, so we share one index). Between my `git add` and my `git commit`, the 05-01 executor issued its own `git commit` which picked up MY staged files (the staged index is shared) and folded them into its commit body. `git show 9780f0d --stat` confirms: my `docs/SETUP-RESEND-DOMAIN.md` (201 lines) and the initial `05-02-SUMMARY.md` (164 lines) are both present in that commit alongside `functions/api/contact.ts` (231 lines).
+- **Why this is not auto-recoverable per the executor's destructive-git prohibition:** Recovering by splitting `9780f0d` would require `git reset --hard HEAD~1` + re-staging + `git push --force` (the branch is `main`, ahead of origin by 7 commits). All three are explicitly prohibited by `<destructive_git_prohibition>`. I MUST NOT rewrite a commit I do not own (the 05-01 work in `9780f0d` is real and correctly intended for the next push).
+- **Fix:** Accept that the runbook + initial summary live in commit `9780f0d` under a 05-01 commit message. The git log + grep tools find the files correctly. Add a small corrective commit (this one) updating only `05-02-SUMMARY.md` to reflect the actual state of git history. The two-commit history for this plan is then: (a) `9780f0d` — runbook + initial summary content (mislabelled as 05-01); (b) `[hash recorded post-corrective-commit]` — summary correction (correctly labelled 05-02). Anyone running `git log --all --oneline -- docs/SETUP-RESEND-DOMAIN.md` or `git log --all --oneline -- .planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` will find the right files.
+- **Files modified:** `.planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` only (corrective edit — runbook unchanged).
+- **Action for orchestrator:** strongly recommend Wave 1 parallel executors run in `git worktree`-based isolation (the `isolation="worktree"` setting referenced elsewhere in the executor spec) rather than a shared working tree, OR serialize the commit step across siblings with a mutex. The current "two executors in one working tree" mode is data-loss-adjacent: if 05-01 had committed any of my files with `git rm` semantics, the runbook would have been deleted from the next sibling commit's working tree state.
+- **Why this is Rule 3 (auto-fix blocking) not Rule 4 (architectural):** the underlying issue (parallel executor isolation) IS architectural and would be Rule 4, but in this case the fix is purely documentary — record what happened in the SUMMARY and move on. No architectural change is in this plan's scope.
+
 ## Owner-Action Required
 
 **Now (within this plan):** Nothing required to execute. Plan is docs-only.
@@ -159,6 +170,14 @@ None. This is a runbook document; the `[FROM-RESEND-WIZARD]` placeholders are in
 
 None. This plan introduces no new attack surface — it is a markdown document under `docs/`. The runbook describes future actions that affect DNS (a high-trust surface) but the actions themselves are owned by Phase 6 execution.
 
-## Self-Check: PENDING
+## Self-Check: PASSED (with collision caveat)
 
-To be appended after the final commit step verifies the runbook file and commit hash both exist.
+Verification performed:
+
+- **Runbook file exists on disk:** `test -f docs/SETUP-RESEND-DOMAIN.md` → FOUND.
+- **Runbook file exists in git history:** `git log --all --oneline -- docs/SETUP-RESEND-DOMAIN.md` → `9780f0d` (FOUND in the absorbed commit per Deviation §5).
+- **Initial summary file exists on disk:** `test -f .planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` → FOUND.
+- **Initial summary in git history:** `git log --all --oneline -- .planning/phases/05-contact-form-backend-gdpr/05-02-SUMMARY.md` → `9780f0d` (FOUND, will be supplemented by the corrective commit).
+- **Plan-level verification gates (1-4, 6):** all PASSED (see Verification Performed section above).
+- **Plan-level verification gate (5, owner review checkpoint):** DEFERRED per Deviation §3 — orchestrator brief authorized batched execution.
+- **Commit hash mismatch:** the runbook commit was absorbed into `9780f0d` (a 05-01-titled commit) rather than landing in a dedicated `docs(05-02):` commit. The corrective commit recorded below fixes the SUMMARY record but cannot retroactively rename `9780f0d`. Caveat documented in Deviation §5; auditor running `git log --all -- docs/SETUP-RESEND-DOMAIN.md` will find the runbook correctly.
