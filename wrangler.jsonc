@@ -1,0 +1,9 @@
+{
+  // Minimal Wrangler config for Pages Functions type generation only.
+  // CF Pages auto-detects functions/ at deploy time without needing this file;
+  // it exists solely so `npx wrangler types --path='./functions/types.d.ts'`
+  // can emit runtime + PagesFunction<Env> types for local TypeScript checks.
+  "name": "klphotography",
+  "compatibility_date": "2026-05-18",
+  "pages_build_output_dir": "./dist"
+}

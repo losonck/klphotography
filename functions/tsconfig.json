@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "types": ["./types.d.ts"]
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["../node_modules"]
+}

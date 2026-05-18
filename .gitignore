@@ -30,3 +30,6 @@ pnpm-debug.log*
 
 # owner raw photo intake (curated subset copied to src/assets/)
 photos/
+
+# Cloudflare Pages Functions — local dev secrets (NEVER commit)
+.dev.vars

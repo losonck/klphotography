@@ -1,0 +1,19 @@
+# .dev.vars.example — copy to .dev.vars (gitignored) and fill in real values for local dev
+# Real RESEND_API_KEY: create at resend.com -> API Keys
+RESEND_API_KEY=re_REPLACE_ME_WITH_REAL_KEY
+
+# Turnstile test secret (public, always returns success — Cloudflare-published per RESEARCH section 7)
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Where the enquiry email is delivered (local dev: use your own test inbox)
+CONTACT_TO_EMAIL=your-test-inbox@gmail.com
+
+# Sender — use Resend's onboarding domain until Phase 6 domain verify (per D-06)
+CONTACT_FROM_EMAIL=KL Photography <onboarding@resend.dev>
+
+# Skip Turnstile verification for local dev (NEVER set in production)
+DEV_SKIP_TURNSTILE=true
+
+# Cloudflare Web Analytics token (PUBLIC = build-time injected into BaseLayout beacon)
+# Leave BLANK locally — CF Pages env supplies in Preview/Production. Local builds will stamp "undefined" into the data-cf-beacon attribute (harmless, no beacon fires).
+PUBLIC_CF_ANALYTICS_TOKEN=
