@@ -85,24 +85,53 @@ import SocialIcons from '@/components/icons/SocialIcons.astro';
             notice.textContent = 'Sending…';
           }
 
+          // Pre-flight: detect missing Turnstile token before POST so we can
+          // give a precise reason instead of a generic 403 from the server.
+          const fd = new FormData(form);
+          const token = fd.get('cf-turnstile-response');
+          if (!token) {
+            if (notice) {
+              const widget = form.querySelector('.cf-turnstile') as HTMLElement | null;
+              const sitekey = widget?.getAttribute('data-sitekey');
+              notice.textContent = !sitekey
+                ? 'Spam-check widget not configured (PUBLIC_TURNSTILE_SITE_KEY missing at build time). Please use phone, email or WhatsApp below.'
+                : 'Spam check did not complete (no token from Turnstile widget). Refresh page and try again, or use phone / email / WhatsApp below.';
+              notice.classList.add('text-red-600');
+            }
+            submitBtn?.removeAttribute('disabled');
+            return;
+          }
+
           try {
             const res = await fetch('/api/contact', {
               method: 'POST',
-              body: new FormData(form),
+              body: fd,
               headers: { Accept: 'application/json' },
             });
-            if (res.ok) {
+            let body: { ok?: boolean; error?: string } = {};
+            try { body = await res.json(); } catch { /* non-JSON response */ }
+
+            if (res.ok && body.ok !== false) {
               form.reset();
+              // Reset Turnstile widget so a fresh token is generated for next submit.
+              if ((window as any).turnstile && (window as any).turnstile.reset) {
+                (window as any).turnstile.reset();
+              }
               if (notice) {
                 notice.textContent = "Thanks — I'll be in touch within two working days.";
                 notice.classList.remove('text-red-600');
               }
             } else {
-              throw new Error(`HTTP ${res.status}`);
+              const serverMsg = body.error ?? `HTTP ${res.status}`;
+              if (notice) {
+                notice.textContent = `Send failed: ${serverMsg}. Please use phone, email, or WhatsApp below.`;
+                notice.classList.add('text-red-600');
+              }
             }
-          } catch {
+          } catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
             if (notice) {
-              notice.textContent = 'Something went wrong. Please use phone, email, or WhatsApp below.';
+              notice.textContent = `Network error: ${msg}. Please use phone, email, or WhatsApp below.`;
               notice.classList.add('text-red-600');
             }
           } finally {
