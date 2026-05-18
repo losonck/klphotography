@@ -96,7 +96,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: Build `functions/api/contact.ts` with Turnstile verification + Resend send; wire client form to it
+- [x] 05-01: Build `functions/api/contact.ts` with Turnstile verification + Resend send; wire client form to it (completed 2026-05-18 — 11/11 local wrangler smoke tests PASS; CF Preview round-trip deferred to push)
 - [ ] 05-02: Verify klphotography.ie sending domain in Resend via SPF/DKIM TXT records in Cloudflare DNS
 - [ ] 05-03: Write `/privacy` page, install Cloudflare Web Analytics beacon, audit `dist/` for secret leaks, scan accessibility
 
@@ -129,5 +129,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Design System | 2/2 | Complete   | 2026-05-17 |
 | 3. Static Content Sections | 0/3 | Not started | - |
 | 4. Portfolio Gallery & Image Pipeline | 2/3 | In Progress|  |
-| 5. Contact Form Backend & GDPR | 0/3 | Not started | - |
+| 5. Contact Form Backend & GDPR | 1/3 | In Progress | - |
 | 6. Launch Cutover | 0/3 | Not started | - |

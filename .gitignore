@@ -33,3 +33,6 @@ photos/
 
 # Cloudflare Pages Functions — local dev secrets (NEVER commit)
 .dev.vars
+
+# Wrangler local dev cache (workerd state + tmp)
+.wrangler/

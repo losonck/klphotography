@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 4 complete — 18-thumb justified-grid + PhotoSwipe lightbox + Hero preload; Lighthouse a11y 100/perf 86/CLS 0/LCP 4.1s (localhost); 11 human sub-tests pending
-last_updated: "2026-05-17T23:00:00.000Z"
-last_activity: 2026-05-17
+status: in-progress
+stopped_at: Plan 05-01 complete — /api/contact Pages Function (Turnstile verify + Resend send via direct fetch) + Contact.astro real Turnstile widget + fetch submit + index.astro CDN script; 11/11 local wrangler smoke tests PASS; CF Preview round-trip deferred to push
+last_updated: "2026-05-18T10:18:00.000Z"
+last_activity: 2026-05-18
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 10
-  completed_plans: 10
-  percent: 67
+  total_plans: 11
+  completed_plans: 11
+  percent: 73
 ---
 
 # Project State
@@ -25,13 +25,13 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 ## Current Position
 
-Phase: 4 of 6 (Portfolio Gallery & Image Pipeline) — COMPLETE pending human checkpoint
-Plan: 3 of 3 complete (content+assets / gallery / lightbox+preload)
-Status: Phase complete — Lighthouse a11y 100 + CLS 0; 11 human browser sub-tests pending per 04-03-SUMMARY
-Last activity: 2026-05-17 — Plan 04-03 shipped (PhotoSwipe v5 lightbox + HeroPreload via getImage(), 4 commits + summary)
+Phase: 5 of 6 (Contact Form Backend & GDPR) — Wave 1 in progress
+Plan: 05-01 of 3 complete; 05-02 + 05-03 dispatched in parallel by orchestrator
+Status: Wave 1 — 05-01 shipped /api/contact Pages Function + Contact.astro wiring; 11/11 local smoke tests PASS; CF Preview round-trip deferred to push (FORM-11 verification gated on owner pushing the branch to trigger CF Pages preview build)
+Last activity: 2026-05-18 — Plan 05-01 shipped (Turnstile + Resend via direct fetch + wrangler devDep, 3 task commits + summary)
 
-Progress (Phase 4): [██████████] 100% (10/15 plans across all phases)
-Overall: [██████░░░░] 67% (10/15 plans across all phases)
+Progress (Phase 5): [████░░░░░░] ~33% (1/3 plans in Phase 5)
+Overall: [███████░░░] 73% (11/15 plans across all phases)
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Overall: [██████░░░░] 67% (10/15 plans across all phases)
 | 02 | 01 | ~6min | 3 | 3 |
 | 02 | 02 | ~7min | 3 | 7 |
 | 04 | 01 | ~50min | 6 (+1 auto-fix) | 31 |
+| 05 | 01 | ~13min | 4 (3 auto + 1 checkpoint executed inline) | 11 |
 
 **Recent Trend:**
 
@@ -115,6 +116,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-17T21:57:13.231Z
-Stopped at: Plan 04-01 complete — content collection + Zod alt-lint + 18 curated photos + hero/about/logo swap shipped; ready for 04-02 (justified-grid gallery component)
+Last session: 2026-05-18T10:18:00.000Z
+Stopped at: Plan 05-01 complete — /api/contact Pages Function (Turnstile verify + Resend send) + Contact.astro real wiring + wrangler devDep. 11/11 local wrangler smoke tests PASS. Real preview email round-trip deferred to CF Pages preview push (owner-confirmed env vars set on Preview + Production).
 Resume file: None
