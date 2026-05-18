@@ -18,6 +18,14 @@ import HeroPreload from '@/components/HeroPreload.astro';
 >
   <Fragment slot="head">
     <HeroPreload />
+    <!-- Phase 5: Turnstile widget JS (managed mode, cookieless per RESEARCH section 2).
+         is:inline prevents Vite from bundling the CDN URL (Pitfall 3). -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+      is:inline
+    ></script>
   </Fragment>
   <Nav />
   <main>

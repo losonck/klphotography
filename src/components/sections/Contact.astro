@@ -11,7 +11,7 @@ import SocialIcons from '@/components/icons/SocialIcons.astro';
 
   <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
     <div class="lg:col-span-2">
-      <form class="space-y-6" id="contact-form" novalidate>
+      <form class="space-y-6" id="contact-form" novalidate method="POST" action="/api/contact">
         <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
           <label>Don't fill this in <input type="text" name="contact_company" tabindex="-1" autocomplete="off" /></label>
         </div>
@@ -46,7 +46,10 @@ import SocialIcons from '@/components/icons/SocialIcons.astro';
             class="mt-2 block w-full bg-cream border border-rule rounded-none px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze"></textarea>
         </div>
 
-        {/* Phase 5: <div class="cf-turnstile" data-sitekey="YOUR-PUBLIC-SITE-KEY"></div> */}
+        <noscript>
+          <p class="text-sm text-ink-soft">Spam protection requires JavaScript. If you have JS disabled, please use phone, email, or WhatsApp below.</p>
+        </noscript>
+        <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} data-theme="light"></div>
 
         <p class="text-sm text-ink-soft">By submitting, you'll receive a reply within two working days. We don't share your details. Privacy: <a href="/privacy" class="text-bronze hover:text-bronze-hover underline">how we handle this</a>.</p>
 
@@ -56,17 +59,54 @@ import SocialIcons from '@/components/icons/SocialIcons.astro';
       </form>
 
       <script>
-        const form = document.getElementById('contact-form');
-        const notice = document.getElementById('cf-notice');
-        form?.addEventListener('submit', (e) => {
+        // Phase 5 real submit handler — Turnstile-protected fetch POST to /api/contact.
+        // No-JS path: <form method="POST" action="/api/contact"> submits natively, the Pages Function
+        // returns a minimal HTML success page (RESEARCH section 6 + D-09 + FORM-10).
+        const form = document.getElementById('contact-form') as HTMLFormElement | null;
+        const notice = document.getElementById('cf-notice') as HTMLParagraphElement | null;
+        const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+        form?.addEventListener('submit', async (e) => {
           e.preventDefault();
-          if (form instanceof HTMLFormElement && !form.checkValidity()) {
+
+          // HTML5 validation gate (preserved from Phase 3 — novalidate on form
+          // + manual checkValidity/reportValidity per RESEARCH section 5).
+          if (!form.checkValidity()) {
             form.reportValidity();
             return;
           }
+
+          // Loading state — disable the rendered button (Button primitive's
+          // loading prop is compile-time only; runtime toggle via DOM per plan Task 3).
+          submitBtn?.setAttribute('disabled', '');
           if (notice) {
             notice.classList.remove('hidden');
-            notice.textContent = 'Form not yet active — please use phone / email / WhatsApp below.';
+            notice.classList.remove('text-red-600');
+            notice.textContent = 'Sending…';
+          }
+
+          try {
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { Accept: 'application/json' },
+            });
+            if (res.ok) {
+              form.reset();
+              if (notice) {
+                notice.textContent = "Thanks — I'll be in touch within two working days.";
+                notice.classList.remove('text-red-600');
+              }
+            } else {
+              throw new Error(`HTTP ${res.status}`);
+            }
+          } catch {
+            if (notice) {
+              notice.textContent = 'Something went wrong. Please use phone, email, or WhatsApp below.';
+              notice.classList.add('text-red-600');
+            }
+          } finally {
+            submitBtn?.removeAttribute('disabled');
           }
         });
       </script>
