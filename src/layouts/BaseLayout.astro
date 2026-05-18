@@ -8,6 +8,20 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+// Plan 05-03: CF Web Analytics token is sourced from build-time env per D-10
+// (Astro PUBLIC_* convention exposes to browser at build time).
+// Deviation from plan text: the beacon is rendered CONDITIONALLY (only when the
+// env var is set + non-empty). The plan template would have rendered
+// data-cf-beacon='{"token": "undefined"}' when unset — CF beacon silently
+// ignores invalid tokens, but the literal "undefined" string in HTML is noise
+// and slightly misleading on view-source. Owner constraint: token cannot be
+// provisioned until Phase 6 DNS-03 puts klphotography.ie on Cloudflare and the
+// Web Analytics site is created. Until then, render NOTHING — zero third-party
+// script, zero cookies, zero "undefined" literal in built HTML. After Phase 6
+// owner sets PUBLIC_CF_ANALYTICS_TOKEN in CF Pages env (Preview + Production)
+// and the next build emits the beacon.
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
@@ -29,5 +43,15 @@ const { title, description } = Astro.props;
        1px tall, absolutely positioned, contributes zero layout / zero CLS. */}
     <div data-nav-sentinel aria-hidden="true" style="position: absolute; top: 0; height: 1px; width: 100%; pointer-events: none;"></div>
     <slot />
+    <!-- Analytics beacon placed AFTER content (defer) so it never blocks rendering. data-nav-sentinel above and main <slot/> above remain in their Phase 3 positions. -->
+    <!-- CF Web Analytics beacon — cookieless, no localStorage; satisfies GDPR-02, GDPR-03. -->
+    {cfAnalyticsToken && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${cfAnalyticsToken}"}`}
+        is:inline
+      ></script>
+    )}
   </body>
 </html>
