@@ -1,9 +1,25 @@
 {
-  // Minimal Wrangler config for Pages Functions type generation only.
-  // CF Pages auto-detects functions/ at deploy time without needing this file;
-  // it exists solely so `npx wrangler types --path='./functions/types.d.ts'`
-  // can emit runtime + PagesFunction<Env> types for local TypeScript checks.
+  // Wrangler config for Cloudflare Pages.
+  // Required so `npx wrangler types` can emit PagesFunction<Env> TypeScript types.
+  // Plaintext env vars live here (CF Pages dashboard manages encrypted Secrets only:
+  //   RESEND_API_KEY, TURNSTILE_SECRET_KEY).
+  // Per-env overrides via `env.preview`.
   "name": "klphotography",
   "compatibility_date": "2026-05-18",
-  "pages_build_output_dir": "./dist"
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADRpr2WtBvlcNvwC",
+    "CONTACT_TO_EMAIL": "klphotography.ie@gmail.com",
+    "CONTACT_FROM_EMAIL": "KL Photography <onboarding@resend.dev>"
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADRpr2WtBvlcNvwC",
+        "CONTACT_TO_EMAIL": "klphotography.ie@gmail.com",
+        "CONTACT_FROM_EMAIL": "KL Photography <onboarding@resend.dev>",
+        "DEV_SKIP_TURNSTILE": "true"
+      }
+    }
+  }
 }
