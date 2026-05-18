@@ -1,0 +1,42 @@
+---
+// src/components/seo/LocalBusinessSchema.astro
+// Site-wide LocalBusiness + ProfessionalService JSON-LD per Plan 06-01 D-10 + RESEARCH §5.
+// No props — all values are constants for klphotography.ie.
+// `is:inline` is required so Vite leaves the JSON body alone (otherwise it would
+// try to parse it as JavaScript).
+// Deliberately OMITS `aggregateRating` (RESEARCH §5): no real review data,
+// fake aggregate ratings trigger Google manual actions.
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
+  name: 'KL Photography',
+  description:
+    'Dublin-based wedding photographer for couples who want to remember the quiet moments. Documentary coverage across Ireland.',
+  url: 'https://klphotography.ie',
+  logo: 'https://klphotography.ie/og-card.jpg',
+  image: 'https://klphotography.ie/og-card.jpg',
+  telephone: '+353851665472',
+  email: 'klphotography.ie@gmail.com',
+  priceRange: '€1,800–€2,400',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Dublin D13',
+    addressLocality: 'Dublin',
+    addressRegion: 'Leinster',
+    postalCode: 'D13',
+    addressCountry: 'IE',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Ireland',
+  },
+  sameAs: [
+    'https://instagram.com/klphotography.ie',
+    'https://facebook.com/klphotography.ie',
+  ],
+  knowsAbout: 'Wedding Photography',
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

@@ -1,13 +1,17 @@
 ---
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
+import SeoHead from '@/components/seo/SeoHead.astro';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema.astro';
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage, canonicalUrl } = Astro.props;
 
 // Plan 05-03: CF Web Analytics token is sourced from build-time env per D-10
 // (Astro PUBLIC_* convention exposes to browser at build time).
@@ -33,6 +37,11 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <Font cssVariable="--font-serif" preload />
     <Font cssVariable="--font-sans" />
+    <!-- Phase 6 (06-01) SEO meta: canonical + OG + Twitter card + apple-touch-icon.
+         Placed AFTER font preloads (critical path order preserved) and BEFORE the
+         per-page <slot name="head"> so a page could override or augment if ever needed. -->
+    <SeoHead title={title} description={description} ogImage={ogImage} canonicalUrl={canonicalUrl} />
+    <LocalBusinessSchema />
     <!-- Slot ordering: placed after <Font /> preloads so injected <link rel="preload"> from pages do not preempt critical font preloads. Phase 6 SEO meta should preserve this order. -->
     <slot name="head" />
     <title>{title}</title>
