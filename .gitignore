@@ -36,3 +36,8 @@ photos/
 
 # Wrangler local dev cache (workerd state + tmp)
 .wrangler/
+
+# Owner business archives (Wix exports, quote CSVs, etc.)
+Old WIX quote archive*.csv
+*-archive.csv
+wix-archive/
