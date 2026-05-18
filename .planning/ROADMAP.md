@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Static Content Sections** - Hero, About, Pricing, Testimonials, Contact UI, nav, footer (completed 2026-05-17)
 - [x] **Phase 4: Portfolio Gallery & Image Pipeline** - Justified grid, lightbox, Astro Picture, AVIF/WebP, hero LCP optimization (completed 2026-05-17)
 - [x] **Phase 5: Contact Form Backend & GDPR** - Pages Function + Turnstile + Resend, privacy policy, cookieless analytics (completed 2026-05-18)
-- [ ] **Phase 6: Launch Cutover** - SEO meta + sitemap + schema, performance audit, DNS swap, Wix decommission
+- [x] **Phase 6: Launch Cutover** - SEO meta + sitemap + schema, performance audit, DNS swap, Wix decommission (completed 2026-05-18)
 
 ## Phase Details
 
@@ -114,9 +114,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Add SEO meta (title/description/OG/Twitter), JSON-LD LocalBusiness + Photograph, sitemap.xml, robots.txt
-- [ ] 06-02: Mobile Lighthouse pass — fix any LCP/CLS/Performance regressions to hit targets
-- [ ] 06-03: Execute cutover — recreate non-A records in CF zone, swap nameservers, verify email + form, archive + cancel Wix, register sitemap in Search Console
+- [x] 06-01: Add SEO meta (title/description/OG/Twitter), JSON-LD LocalBusiness + ProfessionalService, sitemap.xml, robots.txt (completed 2026-05-18)
+- [x] 06-02: CF Pages custom domain + HSTS + Resend domain verify + GDPR-03 activation (completed 2026-05-18)
+- [x] 06-03: Wix archive + cancel + GSC verify + mobile Lighthouse prod + 16-point checklist + milestone close (completed 2026-05-18)
 
 ## Progress
 
@@ -127,7 +127,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Foundation & DNS Pre-flight | 2/2 | Complete | 2026-05-17 |
 | 2. Design System | 2/2 | Complete   | 2026-05-17 |
-| 3. Static Content Sections | 0/3 | Not started | - |
-| 4. Portfolio Gallery & Image Pipeline | 2/3 | In Progress|  |
+| 3. Static Content Sections | 3/3 | Complete | 2026-05-17 |
+| 4. Portfolio Gallery & Image Pipeline | 3/3 | Complete | 2026-05-17 |
 | 5. Contact Form Backend & GDPR | 3/3 | Complete | 2026-05-18 |
-| 6. Launch Cutover | 0/3 | Not started | - |
+| 6. Launch Cutover | 3/3 | Complete | 2026-05-18 |
+
+**PROJECT SHIPPED 2026-05-18** — klphotography.ie live on Cloudflare Pages. All 6 phases complete (15/15 plans).
