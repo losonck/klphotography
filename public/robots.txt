@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /styleguide
-Disallow: /privacy
 
 Sitemap: https://klphotography.ie/sitemap-index.xml
