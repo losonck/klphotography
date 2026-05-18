@@ -10,7 +10,7 @@
   "vars": {
     "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADRpr2WtBvlcNvwC",
     "CONTACT_TO_EMAIL": "klphotography.ie@gmail.com",
-    "CONTACT_FROM_EMAIL": "KL Photography <onboarding@resend.dev>"
+    "CONTACT_FROM_EMAIL": "KL Photography <enquiries@klphotography.ie>"
   },
   "env": {
     "preview": {
